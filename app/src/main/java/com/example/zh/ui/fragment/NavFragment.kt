@@ -8,18 +8,33 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import com.example.zh.R
+import com.example.zh.base.BaseFragment
 
 
 /**
  *导航
  */
-class NavFragment : Fragment() {
+class NavFragment : BaseFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nav, container, false)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initVM()
+        initView()
+        initData()
     }
 
+    override fun setContent(): Int {
+        return R.layout.fragment_nav
+    }
+
+    override fun initView() {
+    }
+
+    override fun initVM() {
+    }
+
+    override fun initData() {
+
+    }
 
 }
