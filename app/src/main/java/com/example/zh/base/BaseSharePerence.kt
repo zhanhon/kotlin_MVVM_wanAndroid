@@ -13,7 +13,6 @@ class BaseSharePerence {
     private constructor(context: Context){
         mSharedPreferences = context.getSharedPreferences(NAME_TUTU_SHARE, Context.MODE_PRIVATE)
     }
-
     companion object {
         private val NAME_TUTU_SHARE = "name_wanAndroid"   //缓存文件名
         private var mInstance: BaseSharePerence? = null
@@ -28,15 +27,12 @@ class BaseSharePerence {
             return mInstance!!
         }
     }
-
     fun setUserInfo(info: String?){
         mSharedPreferences.edit().putString("key_info",info).apply()
     }
-
     fun getUserInfo(): LoginBean?{
         val string : String? = mSharedPreferences.getString("key_info",null)
         return JSON.parseObject(string,LoginBean::class.java)
     }
-
 }
 

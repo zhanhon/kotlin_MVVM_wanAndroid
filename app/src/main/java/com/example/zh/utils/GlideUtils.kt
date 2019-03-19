@@ -22,8 +22,6 @@ object GlideUtils {
                 .thumbnail(0.1f)
                 .into(myImageView)
     }
-
-
     //圆形
     fun loadCircularImg(context: Context, url: String, myImageView: ImageView, errorId: Int) {
         GlideApp.with(context.applicationContext)
@@ -34,7 +32,6 @@ object GlideUtils {
                 .apply(RequestOptions.circleCropTransform())
                 .into(myImageView)
     }
-
     //图片加载--四周圆角
     fun loadRoundImg(context: Context, url: String, myImageView: ImageView) {
         GlideApp.with(context.applicationContext)
@@ -43,7 +40,6 @@ object GlideUtils {
                 .apply(bitmapTransform(RoundedCornersTransformation(10, 0)))
                 .into(myImageView)
     }
-
     fun loadRoundImg(context: Context, bitmap: Bitmap, myImageView: ImageView) {
         GlideApp.with(context.applicationContext)
                 .load(bitmap)
@@ -51,7 +47,6 @@ object GlideUtils {
                 .apply(bitmapTransform(RoundedCornersTransformation(10, 0)))
                 .into(myImageView)
     }
-
     //圆形--四周圆角
     fun loadRoundImg(context: Context, url: String, myImageView: ImageView, errorImge: Int) {
         GlideApp.with(context.applicationContext)
@@ -62,6 +57,4 @@ object GlideUtils {
                 .apply(bitmapTransform(RoundedCornersTransformation(10, 0)))
                 .into(myImageView)
     }
-
-
 }
