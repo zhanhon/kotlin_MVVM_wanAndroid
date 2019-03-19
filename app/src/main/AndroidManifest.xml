@@ -9,9 +9,9 @@
     <application
         android:name=".base.App"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_launcher"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LoginActivity">
+        </activity>
+        <activity android:name=".ui.home.LikeActivity">
         </activity>
     </application>
 

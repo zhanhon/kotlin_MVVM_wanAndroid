@@ -6,6 +6,7 @@ import com.example.zh.base.App
 import com.example.zh.base.Const
 import com.example.zh.net.interceptor.CacheInterceptor
 import com.example.zh.net.interceptor.HeaderInterceptor
+import com.example.zh.net.interceptor.MyCookieJar
 import com.shehuan.wanandroid.apis.WanAndroidApis
 
 import java.io.File
@@ -77,6 +78,7 @@ class HttpMethods private constructor() {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         okHttpBuilder.addInterceptor(loggingInterceptor)
+        okHttpBuilder.cookieJar(MyCookieJar())
 
         /**
          * 设置超时和重新连接

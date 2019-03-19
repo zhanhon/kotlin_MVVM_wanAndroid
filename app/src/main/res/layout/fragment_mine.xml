@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+              android:orientation="vertical"
+             tools:context=".ui.fragment.MineFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+        <ImageView
+            android:id="@+id/image_mine"
+            android:src="@drawable/logo"
+            android:layout_marginLeft="16dp"
+            android:layout_centerVertical="true"
+            android:layout_width="56dp"
+            android:layout_height="56dp"/>
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_alignTop="@+id/image_mine"
+            android:layout_toRightOf="@+id/image_mine"
+            android:text="登录/注册"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+    <View
+        android:background="@color/c_grey"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+    <TextView
+        android:id="@+id/tv_like"
+        android:paddingLeft="16dp"
+        android:gravity="center|left"
+        android:textColor="@color/c_main_title"
+        android:textSize="14sp"
+        android:text="收藏"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"/>
+
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:textSize="16sp"
+        android:textColor="@color/cFFFFFF"
+        android:layout_margin="16dp"
+        android:text="退出"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+</LinearLayout>

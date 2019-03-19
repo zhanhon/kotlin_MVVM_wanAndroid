@@ -25,4 +25,16 @@ abstract class BaseFragment: Fragment() {
     abstract fun initView()
     abstract fun initVM()
     abstract fun initData()
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (hidden) {//隐藏
+            onInvisible()
+        } else {//显示
+            onVisible()
+        }
+    }
+
+    open fun onInvisible() {}
+    open fun onVisible() {}
 }

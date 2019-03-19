@@ -10,10 +10,10 @@ import com.jakewharton.rxbinding3.view.clicks
 import com.zhy.adapter.recyclerview.CommonAdapter
 import com.zhy.adapter.recyclerview.base.ViewHolder
 
-class HomeAdapter(context: Context?,datas: List<ArticleBean.DataBean.DatasBean>)
-    : CommonAdapter<ArticleBean.DataBean.DatasBean>(context, R.layout.item_list_home, datas) {
+class HomeAdapter(context: Context?,datas: List<ArticleBean.DatasBean>)
+    : CommonAdapter<ArticleBean.DatasBean>(context, R.layout.item_list_home, datas) {
 
-    override fun convert(holder: ViewHolder, item: ArticleBean.DataBean.DatasBean, position: Int) {
+    override fun convert(holder: ViewHolder, item: ArticleBean.DatasBean, position: Int) {
         val tvMainTitle: TextView = holder.getView(R.id.tv_main_title)
         val tvAuthorName: TextView = holder.getView(R.id.tv_author_name)
         val tvTypeName: TextView = holder.getView(R.id.tv_type_name)

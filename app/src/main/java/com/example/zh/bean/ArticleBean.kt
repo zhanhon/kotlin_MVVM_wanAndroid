@@ -1,12 +1,6 @@
 package com.example.zh.bean
 
 class ArticleBean {
-
-    var errorCode: Int = 0
-    var errorMsg: String? = null
-    var data: DataBean? = null
-
-    class DataBean {
         var size: Int = 0
         var total: Int = 0
         var offset: Int = 0
@@ -14,8 +8,6 @@ class ArticleBean {
         var curPage: Int = 0
         var pageCount: Int = 0
         var datas: List<DatasBean>? = null
-
-
 
         class DatasBean {
             var userId: Int = 0
@@ -50,8 +42,5 @@ class ArticleBean {
         override fun toString(): String {
             return "DataBean(size=$size, total=$total, offset=$offset, isOver=$isOver, curPage=$curPage, pageCount=$pageCount, datas=$datas)"
         }
-    }
-
-
 
 }

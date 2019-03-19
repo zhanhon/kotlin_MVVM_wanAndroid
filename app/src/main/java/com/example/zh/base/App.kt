@@ -7,6 +7,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        BaseAppContext.init(this)
     }
 
     companion object {

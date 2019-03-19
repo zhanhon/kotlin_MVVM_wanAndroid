@@ -6,13 +6,13 @@ import com.example.zh.base.BaseViewModel
 import com.example.zh.ui.fragment.*
 
 class MainViewModel: BaseViewModel(){
-    val barText: Array<String> = arrayOf("首页","项目","体系","导航","公众号")
+    val barText: Array<String> = arrayOf("首页","项目","体系","导航","我的")
     val mList: List<Fragment> = arrayListOf(
             HomeFragment(),
             ProjectFragment(),
             TreeFragment(),
             NavFragment(),
-            ChapterFragment()
+            MineFragment()
     )
     val barImage: Array<Int> = arrayOf(
             R.drawable.selector_tab_btn_home,

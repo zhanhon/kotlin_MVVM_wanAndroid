@@ -1,6 +1,6 @@
 package com.example.zh.net
 
-import com.example.zh.bean.ArticleBean
+import com.example.zh.bean.*
 import com.shehuan.wanandroid.base.net.observer.BaseObserver
 
 /**
@@ -26,13 +26,18 @@ class AppNetwork private constructor(){
     /**
      * 文章列表
      */
-    fun articleList(pageNum: Int, baseObserver: BaseObserver<ArticleBean>)
+    fun articleList(pageNum: Int, baseObserver: BaseObserver<BaseBean<ArticleBean>>)
             = workService.articleList(pageNum).compose(httpMethods.setThread()).subscribe(baseObserver)
 
-    fun register(userName: String,password: String,repassword: String,baseObserver: BaseObserver<String>)
+    fun banner(baseObserver: BaseObserver<BaseBean<List<BannerBean>>>)
+            = workService.banner().compose(httpMethods.setThread()).subscribe(baseObserver)
+
+    fun register(userName: String,password: String,repassword: String,baseObserver: BaseObserver<BaseBean<LoginBean>>)
             = workService.register(userName,password,repassword).compose(httpMethods.setThread()).subscribe(baseObserver)
 
-    fun login(userName: String,password: String,baseObserver: BaseObserver<String>)
+    fun login(userName: String,password: String,baseObserver: BaseObserver<BaseBean<LoginBean>>)
             = workService.login(userName,password).compose(httpMethods.setThread()).subscribe(baseObserver)
 
+    fun logout(baseObserver: BaseObserver<BaseBean<String>>)
+            = workService.logout().compose(httpMethods.setThread()).subscribe(baseObserver)
 }

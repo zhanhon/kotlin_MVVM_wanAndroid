@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.example.zh.R
 import com.example.zh.base.BaseFragment
+import com.example.zh.ui.adapter.BannerImageLoader
 import com.example.zh.ui.adapter.HomeAdapter
 import com.example.zh.ui.viewmodel.HomeViewModel
 import com.example.zh.utils.InjectorUtil
@@ -20,11 +21,14 @@ import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.fragment_home.*
+import com.youth.banner.BannerConfig
+import com.youth.banner.Transformer
+
 
 /**
  *首页
  */
-class HomeFragment : BaseFragment() , View.OnClickListener{
+class HomeFragment : BaseFragment(){
     private lateinit var viewModel: HomeViewModel
     private lateinit var homeAdapter: HomeAdapter
 
@@ -32,7 +36,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener{
         super.onActivityCreated(savedInstanceState)
         initVM()
         initView()
-
+        initData()
     }
 
     override fun setContent(): Int {
@@ -46,7 +50,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener{
 
 
     override fun initView() {
-        home_recyclerview.layoutManager = LinearLayoutManager(context)
+        home_recyclerview.layoutManager = LinearLayoutManager(context!!)
         homeAdapter = HomeAdapter(context,viewModel.mList)
         home_recyclerview.adapter = homeAdapter
         homeAdapter.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener{
@@ -54,7 +58,8 @@ class HomeFragment : BaseFragment() , View.OnClickListener{
                 return true //true 不会再执行onItemClick
             }
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
-                Toast.makeText(context,"点击position="+position,Toast.LENGTH_SHORT).show()
+
+
             }
 
         })
@@ -70,17 +75,38 @@ class HomeFragment : BaseFragment() , View.OnClickListener{
             override fun onRefresh(refreshlayout: RefreshLayout?) {
                 viewModel.pageNum = 0
                 getArticle(viewModel.pageNum)
+                getBanner()
 
             }
         })
-        sr_smart.autoRefresh()
 
+        banner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE)
+        banner.setImageLoader(BannerImageLoader())
+        banner.setBannerAnimation(Transformer.DepthPage)
+        banner.setDelayTime(2000)
+        banner.setIndicatorGravity(BannerConfig.RIGHT)
+        banner.setOnBannerListener {
+
+        }
+        banner.start()
 
     }
 
     override fun initData() {
         getArticle(viewModel.pageNum)
+        getBanner()
+    }
 
+    fun getBanner(){
+        viewModel.getBanner().observe(this, Observer {
+            viewModel.mBannerList.clear()
+            viewModel.mTitleList.clear()
+            viewModel.mBannerList.addAll(it)
+            for (bannerBean in it) {
+                viewModel.mTitleList.add(bannerBean.title)
+            }
+            banner.update(viewModel.mBannerList,viewModel.mTitleList)
+        })
     }
 
     fun getArticle(pageNum: Int){
@@ -102,10 +128,5 @@ class HomeFragment : BaseFragment() , View.OnClickListener{
     }
 
 
-    override fun onClick(v: View?) {
-        when(v?.id){
-
-        }
-    }
 
 }
