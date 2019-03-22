@@ -38,7 +38,12 @@ interface WanAndroidApis {
     @GET("user/logout/json")
     fun logout(): Observable<BaseBean<String>>
 
+    /**
+     * 导航
+     */
 
+    @GET("navi/json")
+    fun navList(): Observable<BaseBean<List<NavBean>>>
 
 
 }

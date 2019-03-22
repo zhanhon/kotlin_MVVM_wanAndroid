@@ -10,8 +10,8 @@ import io.reactivex.disposables.Disposable
         disposable = d
     }
 
-    override fun onNext(data: E) {
-        onSuccess(data)
+    override fun onNext(results: E) {
+        onSuccess(results)
     }
 
     override fun onError(e: Throwable) {
@@ -24,7 +24,7 @@ import io.reactivex.disposables.Disposable
 
     fun getDisposable() = disposable
 
-    abstract fun onSuccess(data: E)
+    abstract fun onSuccess(results: E)
 
     abstract fun onFailure(e: Exception)
 }

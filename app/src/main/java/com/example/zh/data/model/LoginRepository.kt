@@ -16,10 +16,9 @@ class LoginRepository private constructor(private val appNetwork: AppNetwork){
     fun login(userName: String,password: String) : LiveData<LoginBean>{
         val contentData = MutableLiveData<LoginBean>()
         appNetwork.login(userName,password,object : BaseObserver<BaseBean<LoginBean>>(){
-            override fun onSuccess(data: BaseBean<LoginBean>) {
-                Log.e("log","data="+data)
-                if (data.errorCode == 0){
-                    contentData.postValue(data.data)
+            override fun onSuccess(results: BaseBean<LoginBean>) {
+                if (results.errorCode == 0){
+                    contentData.postValue(results.data)
                 }else{
                     contentData.postValue(null)
                 }
@@ -34,10 +33,9 @@ class LoginRepository private constructor(private val appNetwork: AppNetwork){
     fun register(userName: String,password: String,repassword: String) : LiveData<LoginBean>{
         val contentData = MutableLiveData<LoginBean>()
         appNetwork.register(userName,password,repassword,object : BaseObserver<BaseBean<LoginBean>>(){
-            override fun onSuccess(data: BaseBean<LoginBean>) {
-                Log.e("log","data register="+data)
-                if (data.errorCode == 0){
-                    contentData.postValue(data.data)
+            override fun onSuccess(results: BaseBean<LoginBean>) {
+                if (results.errorCode == 0){
+                    contentData.postValue(results.data)
                 }else{
                     contentData.postValue(null)
                 }
@@ -52,9 +50,8 @@ class LoginRepository private constructor(private val appNetwork: AppNetwork){
     fun logout() : LiveData<BaseBean<String>>{
         val contentData = MutableLiveData<BaseBean<String>>()
         appNetwork.logout(object : BaseObserver<BaseBean<String>>(){
-            override fun onSuccess(data: BaseBean<String>) {
-                Log.e("log","data logout="+data)
-                contentData.postValue(data)
+            override fun onSuccess(results: BaseBean<String>) {
+                contentData.postValue(results)
             }
             override fun onFailure(e: Exception) {
                 contentData.postValue(null)

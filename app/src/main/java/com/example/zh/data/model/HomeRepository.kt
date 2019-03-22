@@ -12,7 +12,7 @@ import com.shehuan.wanandroid.base.net.observer.BaseObserver
 /**
  * 数据仓库
  */
-class HomeRepository private constructor(val appNetwork: AppNetwork){
+class HomeRepository private constructor(private val appNetwork: AppNetwork){
 
     companion object {
         private var instance: HomeRepository? = null
@@ -32,10 +32,9 @@ class HomeRepository private constructor(val appNetwork: AppNetwork){
     fun getBanner(): LiveData<List<BannerBean>>{
         val liveData = MutableLiveData<List<BannerBean>>()
         appNetwork.banner(object : BaseObserver<BaseBean<List<BannerBean>>>(){
-            override fun onSuccess(data: BaseBean<List<BannerBean>>) {
-                Log.e("log getBanner","data="+data.toString())
-                if (data.errorCode == 0){
-                    liveData.postValue(data.data)
+            override fun onSuccess(results: BaseBean<List<BannerBean>>) {
+                if (results.errorCode == 0){
+                    liveData.postValue(results.data)
                 }else{
                     liveData.postValue(null)
                 }
@@ -52,9 +51,8 @@ class HomeRepository private constructor(val appNetwork: AppNetwork){
     fun getArticleList(pageNum: Int): LiveData<List<ArticleBean.DatasBean>>{
         val contentData = MutableLiveData<List<ArticleBean.DatasBean>>()
         appNetwork.articleList(pageNum,object: BaseObserver<BaseBean<ArticleBean>>(){
-            override fun onSuccess(data: BaseBean<ArticleBean>) {
-                Log.e("log onSuccess",data?.toString())
-                contentData.postValue(data?.data?.datas ?: null)
+            override fun onSuccess(results: BaseBean<ArticleBean>) {
+                contentData.postValue(results.data?.datas)
             }
             override fun onFailure(e: Exception) {
                 e.printStackTrace()

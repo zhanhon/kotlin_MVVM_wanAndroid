@@ -10,6 +10,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
     /**
      * vm传参
      */
+    @Suppress("UNCHECKED_CAST")
     class LoginViewModelFactory(private val repository: LoginRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return LoginViewModel(repository) as T

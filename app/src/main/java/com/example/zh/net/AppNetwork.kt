@@ -40,4 +40,9 @@ class AppNetwork private constructor(){
 
     fun logout(baseObserver: BaseObserver<BaseBean<String>>)
             = workService.logout().compose(httpMethods.setThread()).subscribe(baseObserver)
+
+    fun navList(baseObserver: BaseObserver<BaseBean<List<NavBean>>>)
+            = workService.navList().compose(httpMethods.setThread()).subscribe(baseObserver)
+
+
 }

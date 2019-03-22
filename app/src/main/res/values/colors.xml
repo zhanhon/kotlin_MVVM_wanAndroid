@@ -37,4 +37,7 @@
     <color name="c_sub_title">#484848</color>
     <color name="c_main_title">#2E3134</color>
     <color name="c_grey">#999999</color>
+
+    <!--页面背景的颜色-->
+    <color name="color_page_bg">#F1F3F4</color>
 </resources>
