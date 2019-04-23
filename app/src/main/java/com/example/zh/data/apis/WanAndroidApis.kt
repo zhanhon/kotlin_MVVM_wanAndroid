@@ -41,9 +41,21 @@ interface WanAndroidApis {
     /**
      * 导航
      */
-
     @GET("navi/json")
     fun navList(): Observable<BaseBean<List<NavBean>>>
+
+    /**
+     * 体系
+     */
+    @GET("tree/json")
+    fun treeSystem(): Observable<BaseBean<List<TreeSystemBean>>>
+
+    /**
+     * 知识体系下的文章
+     */
+    @GET("article/list/{pageNum}/json/?cid={cId}")
+    fun treeArticleList(@Path("pageNum") pageNum: Int,@Path("cId") cId:Int): Observable<BaseBean<List<TreeArticleBean>>>
+
 
 
 }

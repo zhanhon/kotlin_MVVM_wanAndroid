@@ -11,4 +11,12 @@
     <style name="MyDialog" parent="NiceDialogStyle">
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!--加载对话框-->
+    <style name="dialog_style" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

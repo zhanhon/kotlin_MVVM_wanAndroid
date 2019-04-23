@@ -3,6 +3,7 @@ package com.example.zh.data.model
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.zh.base.Const
 import com.example.zh.bean.BaseBean
 import com.example.zh.bean.LoginBean
 import com.example.zh.net.AppNetwork
@@ -17,7 +18,7 @@ class LoginRepository private constructor(private val appNetwork: AppNetwork){
         val contentData = MutableLiveData<LoginBean>()
         appNetwork.login(userName,password,object : BaseObserver<BaseBean<LoginBean>>(){
             override fun onSuccess(results: BaseBean<LoginBean>) {
-                if (results.errorCode == 0){
+                if (results.errorCode == Const.CODE_SUCCESS){
                     contentData.postValue(results.data)
                 }else{
                     contentData.postValue(null)
@@ -34,7 +35,7 @@ class LoginRepository private constructor(private val appNetwork: AppNetwork){
         val contentData = MutableLiveData<LoginBean>()
         appNetwork.register(userName,password,repassword,object : BaseObserver<BaseBean<LoginBean>>(){
             override fun onSuccess(results: BaseBean<LoginBean>) {
-                if (results.errorCode == 0){
+                if (results.errorCode == Const.CODE_SUCCESS){
                     contentData.postValue(results.data)
                 }else{
                     contentData.postValue(null)
@@ -51,7 +52,11 @@ class LoginRepository private constructor(private val appNetwork: AppNetwork){
         val contentData = MutableLiveData<BaseBean<String>>()
         appNetwork.logout(object : BaseObserver<BaseBean<String>>(){
             override fun onSuccess(results: BaseBean<String>) {
-                contentData.postValue(results)
+                if (results.errorCode == Const.CODE_SUCCESS){
+                    contentData.postValue(results)
+                }else{
+                    contentData.postValue(null)
+                }
             }
             override fun onFailure(e: Exception) {
                 contentData.postValue(null)

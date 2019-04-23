@@ -40,4 +40,5 @@
 
     <!--页面背景的颜色-->
     <color name="color_page_bg">#F1F3F4</color>
+    <color name="tv_main">#020202</color><!-- 文本主色 -->
 </resources>

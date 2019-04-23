@@ -20,7 +20,7 @@ class AppNetwork private constructor(){
             return network!!
         }
     }
-    private val httpMethods = HttpMethods.getInstance();
+    private val httpMethods = HttpMethods.getInstance()
     private val workService = httpMethods.getApiService()
 
     /**
@@ -44,5 +44,10 @@ class AppNetwork private constructor(){
     fun navList(baseObserver: BaseObserver<BaseBean<List<NavBean>>>)
             = workService.navList().compose(httpMethods.setThread()).subscribe(baseObserver)
 
+    fun treeSystem(baseObserver: BaseObserver<BaseBean<List<TreeSystemBean>>>) =
+            workService.treeSystem().compose(httpMethods.setThread()).subscribe(baseObserver)
+
+    fun treeArticleList(pageNum: Int,cId: Int, baseObserver: BaseObserver<BaseBean<List<TreeArticleBean>>>)
+            = workService.treeArticleList(pageNum,cId).compose(httpMethods.setThread()).subscribe(baseObserver)
 
 }

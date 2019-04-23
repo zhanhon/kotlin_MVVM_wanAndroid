@@ -6,7 +6,13 @@ import com.example.zh.base.BaseViewModel
 import com.example.zh.ui.fragment.*
 
 class MainViewModel: BaseViewModel(){
-    val barText: Array<String> = arrayOf("首页","项目","体系","导航","我的")
+    val barText: Array<String> = arrayOf(
+            "首页",
+            "项目",
+            "体系",
+            "导航",
+            "我的"
+    )
     val mList: List<Fragment> = arrayListOf(
             HomeFragment(),
             ProjectFragment(),

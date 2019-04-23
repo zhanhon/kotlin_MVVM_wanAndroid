@@ -1,6 +1,7 @@
 package com.example.zh.ui.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.view.View
@@ -13,6 +14,7 @@ import android.view.Gravity
 import com.scwang.smartrefresh.layout.util.DensityUtil
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.example.zh.ui.home.WebActivity
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
@@ -63,8 +65,14 @@ class BavTabFragment : BaseFragment() {
             }
         }
 
-        flowlayoutHot.setOnTagClickListener { view, position, parent -> true
+        flowlayoutHot.setOnTagClickListener { view, position, parent ->
+            val intent = Intent()
+            intent.setClass(context, WebActivity::class.java)
+            val link = beanList.get(position).link
+            intent.putExtra("url",link)
+            context?.startActivity(intent)
 
+            true
         }
     }
 

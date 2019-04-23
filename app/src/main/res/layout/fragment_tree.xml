@@ -5,8 +5,9 @@
              android:layout_height="match_parent"
              tools:context=".ui.fragment.TreeFragment">
 
-    <TextView
-        android:text="体系"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_tree"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>

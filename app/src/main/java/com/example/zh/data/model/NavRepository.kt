@@ -2,6 +2,7 @@ package com.example.zh.data.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.zh.base.Const
 import com.example.zh.bean.BaseBean
 import com.example.zh.bean.NavBean
 import com.example.zh.net.AppNetwork
@@ -27,7 +28,7 @@ class NavRepository constructor(private val appNetwork: AppNetwork){
         val data = MutableLiveData<List<NavBean>>()
         appNetwork.navList(object : BaseObserver<BaseBean<List<NavBean>>>(){
             override fun onSuccess(results: BaseBean<List<NavBean>>) {
-                if (results.errorCode == 0){
+                if (results.errorCode == Const.CODE_SUCCESS){
                     data.postValue(results.data)
                 }else{
                     data.postValue(null)

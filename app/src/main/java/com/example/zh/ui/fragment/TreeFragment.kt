@@ -2,23 +2,74 @@ package com.example.zh.ui.fragment
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.zh.R
+import com.example.zh.base.BaseFragment
+import com.example.zh.ui.adapter.TreeAdapter
+import com.example.zh.ui.viewmodel.TreeViewModel
+import com.example.zh.utils.InjectorUtil
+import kotlinx.android.synthetic.main.fragment_tree.*
 
 
 /**
  *体系
  */
-class TreeFragment : Fragment() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tree, container, false)
+class TreeFragment : BaseFragment() {
+    lateinit var viewModle: TreeViewModel
+    var treeAdapter: TreeAdapter? = null
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initVM()
+        initView()
+        initData()
     }
 
+    override fun setContent(): Int {
+        return R.layout.fragment_tree
+    }
+
+    override fun initVM() {
+        viewModle = ViewModelProviders.of(this,InjectorUtil.getTreeFactoty()).get(TreeViewModel::class.java)
+    }
+
+    override fun initView() {
+        rv_tree.layoutManager = LinearLayoutManager(context)
+        treeAdapter = TreeAdapter(viewModle.treeList)
+        rv_tree.adapter = treeAdapter
+
+
+    }
+
+    override fun initData() {
+        showLoadingDialog()
+        treeSystem()
+
+    }
+
+    fun treeSystem(){
+
+        viewModle.treeSystem().observe(this, Observer {
+            dismissLoadingDialog()
+            viewModle.treeList.clear()
+            if (it != null){
+                viewModle.treeList.addAll(it)
+                treeAdapter?.notifyDataSetChanged()
+
+            }
+        })
+    }
+
+    fun treeArticleList(numPage: Int,cId: Int){
+        viewModle.treeArticleList(numPage,cId).observe(this, Observer {
+            viewModle.treeArticleList.clear()
+            if (it != null){
+                viewModle.treeArticleList.addAll(it)
+            }
+
+        })
+    }
 
 }

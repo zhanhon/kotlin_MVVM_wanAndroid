@@ -8,6 +8,6 @@ abstract class BaseActivity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
     }
 
-    abstract fun initView()
     abstract fun initVM()
+    abstract fun initView()
 }

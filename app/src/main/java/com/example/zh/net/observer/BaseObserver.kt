@@ -16,6 +16,7 @@ import io.reactivex.disposables.Disposable
 
     override fun onError(e: Throwable) {
         onFailure(e as Exception)
+        e.printStackTrace()
     }
 
     override fun onComplete() {

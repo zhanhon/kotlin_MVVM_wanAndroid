@@ -3,6 +3,7 @@ package com.example.zh.data.model
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.zh.base.Const
 import com.example.zh.bean.ArticleBean
 import com.example.zh.bean.BannerBean
 import com.example.zh.bean.BaseBean
@@ -33,7 +34,7 @@ class HomeRepository private constructor(private val appNetwork: AppNetwork){
         val liveData = MutableLiveData<List<BannerBean>>()
         appNetwork.banner(object : BaseObserver<BaseBean<List<BannerBean>>>(){
             override fun onSuccess(results: BaseBean<List<BannerBean>>) {
-                if (results.errorCode == 0){
+                if (results.errorCode == Const.CODE_SUCCESS){
                     liveData.postValue(results.data)
                 }else{
                     liveData.postValue(null)
@@ -52,10 +53,13 @@ class HomeRepository private constructor(private val appNetwork: AppNetwork){
         val contentData = MutableLiveData<List<ArticleBean.DatasBean>>()
         appNetwork.articleList(pageNum,object: BaseObserver<BaseBean<ArticleBean>>(){
             override fun onSuccess(results: BaseBean<ArticleBean>) {
-                contentData.postValue(results.data?.datas)
+                if (results.errorCode == Const.CODE_SUCCESS){
+                    contentData.postValue(results.data?.datas)
+                }else{
+                    contentData.postValue(null)
+                }
             }
             override fun onFailure(e: Exception) {
-                e.printStackTrace()
                 contentData.postValue(null)
             }
         })

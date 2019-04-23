@@ -1,6 +1,7 @@
 package com.example.zh.ui.fragment
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.example.zh.R
 import com.example.zh.base.BaseFragment
 import com.example.zh.ui.adapter.BannerImageLoader
 import com.example.zh.ui.adapter.HomeAdapter
+import com.example.zh.ui.home.WebActivity
 import com.example.zh.ui.viewmodel.HomeViewModel
 import com.example.zh.utils.InjectorUtil
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -58,8 +60,11 @@ class HomeFragment : BaseFragment(){
                 return true //true 不会再执行onItemClick
             }
             override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
-
-
+                val intent = Intent()
+                intent.setClass(context,WebActivity::class.java)
+                val link = viewModel.mList.get(position).link
+                intent.putExtra("url",link)
+                startActivity(intent)
             }
 
         })
