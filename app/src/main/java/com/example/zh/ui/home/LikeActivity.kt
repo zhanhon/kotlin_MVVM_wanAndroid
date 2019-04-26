@@ -11,7 +11,6 @@ import com.example.zh.base.BaseActivity
 import com.example.zh.ui.adapter.HomeAdapter
 import com.example.zh.ui.viewmodel.HomeViewModel
 import com.example.zh.utils.InjectorUtil
-import com.zhy.adapter.recyclerview.MultiItemTypeAdapter
 import kotlinx.android.synthetic.main.activity_like.*
 
 class LikeActivity : BaseActivity() {
