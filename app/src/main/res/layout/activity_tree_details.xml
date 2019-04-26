@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.tree.TreeDetailsActivity">
+    xmlns:tl="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimaryDark"
+            android:title="标题"
+            app:titleTextColor="@android:color/white"
+            app:layout_scrollFlags="scroll|snap|enterAlways">
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/tab_tree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            tl:tl_textSelectColor="@color/colorAccent"
+            tl:tl_textUnselectColor="@color/c_sub_title"
+            tl:tl_indicator_gravity="BOTTOM"
+            tl:tl_textBold="SELECT"
+            tl:tl_indicator_color="@color/colorAccent"
+            tl:tl_underline_color="@color/colorAccent"
+            tl:tl_underline_gravity="TOP"
+            tl:tl_underline_height="1dp"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    </androidx.viewpager.widget.ViewPager>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

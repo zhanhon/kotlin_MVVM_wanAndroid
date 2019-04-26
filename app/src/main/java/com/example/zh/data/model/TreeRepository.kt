@@ -43,10 +43,10 @@ class TreeRepository constructor(private val appNetwork: AppNetwork){
     }
 
 
-    fun treeArticleList(numPage: Int,cId: Int): LiveData<List<TreeArticleBean>>{
-        val data = MutableLiveData<List<TreeArticleBean>>()
-        appNetwork.treeArticleList(numPage,cId,object : BaseObserver<BaseBean<List<TreeArticleBean>>>(){
-            override fun onSuccess(results: BaseBean<List<TreeArticleBean>>) {
+    fun treeArticleList(numPage: Int,cId: Int): LiveData<TreeArticleBean>{
+        val data = MutableLiveData<TreeArticleBean>()
+        appNetwork.treeArticleList(numPage,cId,object : BaseObserver<BaseBean<TreeArticleBean>>(){
+            override fun onSuccess(results: BaseBean<TreeArticleBean>) {
                 if (results.errorCode == Const.CODE_SUCCESS){
                     data.postValue(results.data)
                 }else{

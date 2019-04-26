@@ -6,10 +6,12 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.zh.R
 import com.example.zh.bean.ArticleBean
+import com.example.zh.bean.TreeArticleList
 
-class HomeAdapter(datas: List<ArticleBean.DatasBean>)
-    : BaseQuickAdapter<ArticleBean.DatasBean, BaseViewHolder>(R.layout.item_list_home, datas) {
-    override fun convert(holder: BaseViewHolder, item: ArticleBean.DatasBean) {
+class TreeTabAdapter(datas: List<TreeArticleList>)
+    : BaseQuickAdapter<TreeArticleList,BaseViewHolder>(R.layout.item_list_home, datas) {
+
+    override fun convert(holder: BaseViewHolder, item:TreeArticleList) {
         val tvMainTitle: TextView = holder.getView(R.id.tv_main_title)
         val tvAuthorName: TextView = holder.getView(R.id.tv_author_name)
         val tvTypeName: TextView = holder.getView(R.id.tv_type_name)

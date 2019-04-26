@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.chad.library.adapter.base.BaseQuickAdapter
 
 import com.example.zh.R
 import com.example.zh.base.BaseFragment
@@ -53,21 +54,17 @@ class HomeFragment : BaseFragment(){
 
     override fun initView() {
         home_recyclerview.layoutManager = LinearLayoutManager(context!!)
-        homeAdapter = HomeAdapter(context,viewModel.mList)
+        homeAdapter = HomeAdapter(viewModel.mList)
         home_recyclerview.adapter = homeAdapter
-        homeAdapter.setOnItemClickListener(object : MultiItemTypeAdapter.OnItemClickListener{
-            override fun onItemLongClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int): Boolean {
-                return true //true 不会再执行onItemClick
-            }
-            override fun onItemClick(view: View?, holder: RecyclerView.ViewHolder?, position: Int) {
+        homeAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener{
+            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
                 val intent = Intent()
-                intent.setClass(context,WebActivity::class.java)
+                intent.setClass(context!!,WebActivity::class.java)
                 val link = viewModel.mList.get(position).link
                 intent.putExtra("url",link)
                 startActivity(intent)
             }
-
-        })
+        }
 
         sr_smart.setRefreshFooter(ClassicsFooter(context))
         sr_smart.setRefreshHeader(ClassicsHeader(context))

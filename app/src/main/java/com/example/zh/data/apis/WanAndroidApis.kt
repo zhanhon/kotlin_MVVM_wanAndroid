@@ -53,8 +53,8 @@ interface WanAndroidApis {
     /**
      * 知识体系下的文章
      */
-    @GET("article/list/{pageNum}/json/?cid={cId}")
-    fun treeArticleList(@Path("pageNum") pageNum: Int,@Path("cId") cId:Int): Observable<BaseBean<List<TreeArticleBean>>>
+    @GET("article/list/{pageNum}/json")
+    fun treeArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Observable<BaseBean<TreeArticleBean>>
 
 
 

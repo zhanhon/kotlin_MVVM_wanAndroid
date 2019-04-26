@@ -6,14 +6,16 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="16sp"
-        android:text="标题"
-        android:singleLine="true"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/image_back"
+        android:singleLine="true"
+        android:gravity="center"
+        android:text="标题"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
 
     <ImageView
         android:id="@+id/image_back"

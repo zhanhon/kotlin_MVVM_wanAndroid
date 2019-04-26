@@ -62,14 +62,6 @@ class TreeFragment : BaseFragment() {
         })
     }
 
-    fun treeArticleList(numPage: Int,cId: Int){
-        viewModle.treeArticleList(numPage,cId).observe(this, Observer {
-            viewModle.treeArticleList.clear()
-            if (it != null){
-                viewModle.treeArticleList.addAll(it)
-            }
 
-        })
-    }
 
 }

@@ -2,7 +2,7 @@ package com.example.zh.bean
 
 data class TreeArticleBean(
     val curPage: Int,
-    val datas: List<DataX>,
+    val datas: List<TreeArticleList>,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,
@@ -10,7 +10,7 @@ data class TreeArticleBean(
     val total: Int
 )
 
-data class DataX(
+data class TreeArticleList(
     val apkLink: String,
     val author: String,
     val chapterId: Int,

@@ -47,7 +47,7 @@ class AppNetwork private constructor(){
     fun treeSystem(baseObserver: BaseObserver<BaseBean<List<TreeSystemBean>>>) =
             workService.treeSystem().compose(httpMethods.setThread()).subscribe(baseObserver)
 
-    fun treeArticleList(pageNum: Int,cId: Int, baseObserver: BaseObserver<BaseBean<List<TreeArticleBean>>>)
+    fun treeArticleList(pageNum: Int,cId: Int, baseObserver: BaseObserver<BaseBean<TreeArticleBean>>)
             = workService.treeArticleList(pageNum,cId).compose(httpMethods.setThread()).subscribe(baseObserver)
 
 }

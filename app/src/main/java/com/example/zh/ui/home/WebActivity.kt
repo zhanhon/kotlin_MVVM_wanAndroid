@@ -25,6 +25,7 @@ class WebActivity : BaseActivity() {
     }
 
     override fun initView() {
+        tv_title.text = ""
         val url: String = intent.getStringExtra("url")
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(ll_web as LinearLayout, LinearLayout.LayoutParams(-1, -1))

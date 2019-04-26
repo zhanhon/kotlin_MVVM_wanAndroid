@@ -25,14 +25,14 @@ class TreeAdapter(data: MutableList<TreeSystemBean>?) :
         helper?.setText(R.id.tv_tree_group_name,item?.name)
         val tagFlowLayout : TagFlowLayout = helper!!.getView(R.id.tagFlowLayout_child)
 
-        showTagView(tagFlowLayout,item?.children)
+        showTagView(tagFlowLayout,item)
 
 
     }
 
 
-    private fun showTagView(flowlayoutHot: TagFlowLayout, beanList: List<Children>?) {
-        flowlayoutHot.adapter = object : TagAdapter<Children>(beanList) {
+    private fun showTagView(flowlayoutHot: TagFlowLayout, item: TreeSystemBean?) {
+        flowlayoutHot.adapter = object : TagAdapter<Children>(item?.children) {
             override fun getView(parent: FlowLayout, position: Int, bean: Children): View {
                 val textView = getTextView()
                 textView.setText(Html.fromHtml(bean.name))
@@ -41,11 +41,11 @@ class TreeAdapter(data: MutableList<TreeSystemBean>?) :
         }
 
         flowlayoutHot.setOnTagClickListener { view, position, parent ->
-            val children : Children? = beanList?.get(position)
             val intent = Intent()
-            intent.putExtra("children_id",children?.id)
-//            intent.setClass(mContext,TreeDetailsActivity::class.java)
-//            mContext.startActivity(intent)
+            intent.putParcelableArrayListExtra("children_list",item?.children)
+            intent.putExtra("title_name",item?.name)
+            intent.setClass(mContext,TreeDetailsActivity::class.java)
+            mContext.startActivity(intent)
             true
         }
     }
