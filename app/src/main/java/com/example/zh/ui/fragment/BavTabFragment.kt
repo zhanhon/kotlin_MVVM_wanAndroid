@@ -21,14 +21,6 @@ import com.zhy.view.flowlayout.TagFlowLayout
 
 class BavTabFragment : BaseFragment() {
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        initVM()
-        initView()
-        initData()
-
-    }
-
     override fun setContent(): Int {
         return R.layout.fragment_nav_tab
     }

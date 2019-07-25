@@ -21,13 +21,6 @@ class NavFragment : BaseFragment() {
     lateinit var viewModel: NavViewModel
     var adapter: MyPagerAdapter? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        initVM()
-        initView()
-        initData()
-    }
-
     override fun setContent(): Int {
         return R.layout.fragment_nav
     }

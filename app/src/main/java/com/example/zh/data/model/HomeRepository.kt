@@ -1,6 +1,5 @@
 package com.example.zh.data.model
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.zh.base.Const
@@ -9,6 +8,7 @@ import com.example.zh.bean.BannerBean
 import com.example.zh.bean.BaseBean
 import com.example.zh.net.AppNetwork
 import com.shehuan.wanandroid.base.net.observer.BaseObserver
+import kotlinx.coroutines.*
 
 /**
  * 数据仓库
@@ -68,3 +68,4 @@ class HomeRepository private constructor(private val appNetwork: AppNetwork){
 
 
 }
+

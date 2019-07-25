@@ -2,6 +2,8 @@ package com.example.zh.net
 
 import com.example.zh.bean.*
 import com.shehuan.wanandroid.base.net.observer.BaseObserver
+import kotlinx.coroutines.Deferred
+import retrofit2.Response
 
 /**
  * 网络请求数据
@@ -49,5 +51,9 @@ class AppNetwork private constructor(){
 
     fun treeArticleList(pageNum: Int,cId: Int, baseObserver: BaseObserver<BaseBean<TreeArticleBean>>)
             = workService.treeArticleList(pageNum,cId).compose(httpMethods.setThread()).subscribe(baseObserver)
+
+    fun getProject(): Response<BaseBean<List<ProjectData>>> = workService.getProject().execute()
+
+    fun projectArticleList(pageNum: Int,cId: Int): Response<BaseBean<List<ProjectArticleBean>>> = workService.projectArticleList(pageNum,cId).execute()
 
 }

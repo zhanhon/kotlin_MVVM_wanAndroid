@@ -75,9 +75,9 @@ class HttpMethods private constructor() {
         okHttpBuilder.cache(cache).addInterceptor(CacheInterceptor())//设置缓存
         okHttpBuilder.addInterceptor(HeaderInterceptor())//设置头信息
         //配置log打印拦截器
-        val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-        okHttpBuilder.addInterceptor(loggingInterceptor)
+//        val loggingInterceptor = HttpLoggingInterceptor()
+//        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+//        okHttpBuilder.addInterceptor(loggingInterceptor)
         okHttpBuilder.cookieJar(MyCookieJar())
 
         /**

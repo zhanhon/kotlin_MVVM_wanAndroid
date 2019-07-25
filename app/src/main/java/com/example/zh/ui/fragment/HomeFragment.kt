@@ -34,13 +34,6 @@ class HomeFragment : BaseFragment(){
     private lateinit var viewModel: HomeViewModel
     private lateinit var homeAdapter: HomeAdapter
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        initVM()
-        initView()
-        initData()
-    }
-
     override fun setContent(): Int {
         return R.layout.fragment_home
     }
@@ -52,13 +45,13 @@ class HomeFragment : BaseFragment(){
 
 
     override fun initView() {
-        home_recyclerview.layoutManager = LinearLayoutManager(context!!)
+        home_recyclerview.layoutManager = LinearLayoutManager(context)
         homeAdapter = HomeAdapter(viewModel.mList)
         home_recyclerview.adapter = homeAdapter
         homeAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener{
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
                 val intent = Intent()
-                intent.setClass(context!!,WebActivity::class.java)
+                intent.setClass(context,WebActivity::class.java)
                 val link = viewModel.mList.get(position).link
                 intent.putExtra("url",link)
                 startActivity(intent)

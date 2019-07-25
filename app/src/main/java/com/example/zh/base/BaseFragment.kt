@@ -15,9 +15,17 @@ import com.example.zh.ui.widget.LoadingDialog
  */
 abstract class BaseFragment: Fragment() {
     var lodingDialog : LoadingDialog? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        lodingDialog = LoadingDialog(context!!)
         return inflater.inflate(setContent(), container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        lodingDialog = LoadingDialog(context!!)
+        initVM()
+        initView()
+        initData()
     }
 
     abstract fun setContent(): Int

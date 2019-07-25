@@ -2,6 +2,8 @@ package com.shehuan.wanandroid.apis
 
 import com.example.zh.bean.*
 import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
+import retrofit2.Call
 import retrofit2.http.*
 
 interface WanAndroidApis {
@@ -56,6 +58,16 @@ interface WanAndroidApis {
     @GET("article/list/{pageNum}/json")
     fun treeArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Observable<BaseBean<TreeArticleBean>>
 
+    /**
+     * 项目分类下的文章
+     */
+    @GET("project/list/{pageNum}/json")
+    fun projectArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Call<BaseBean<List<ProjectArticleBean>>>
 
+    /**
+     * 项目分类
+     */
+    @GET("project/tree/json")
+    fun getProject(): Call<BaseBean<List<ProjectData>>>
 
 }

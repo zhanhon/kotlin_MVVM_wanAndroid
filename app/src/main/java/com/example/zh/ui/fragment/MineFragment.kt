@@ -25,13 +25,6 @@ import kotlinx.android.synthetic.main.fragment_mine.*
 class MineFragment : BaseFragment() {
     lateinit var viewModel: LoginViewModel
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        initVM()
-        initView()
-        initData()
-    }
-
     override fun setContent(): Int {
         return R.layout.fragment_mine
     }

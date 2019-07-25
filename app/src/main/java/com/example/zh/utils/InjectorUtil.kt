@@ -1,14 +1,8 @@
 package com.example.zh.utils
 
-import com.example.zh.data.model.HomeRepository
-import com.example.zh.data.model.LoginRepository
-import com.example.zh.data.model.NavRepository
-import com.example.zh.data.model.TreeRepository
+import com.example.zh.data.model.*
 import com.example.zh.net.AppNetwork
-import com.example.zh.ui.viewmodel.HomeViewModel
-import com.example.zh.ui.viewmodel.LoginViewModel
-import com.example.zh.ui.viewmodel.NavViewModel
-import com.example.zh.ui.viewmodel.TreeViewModel
+import com.example.zh.ui.viewmodel.*
 
 
 object InjectorUtil {
@@ -25,6 +19,9 @@ object InjectorUtil {
 
     private fun getTreeRepository() = TreeRepository.getInstance(AppNetwork.getInstance())
     fun getTreeFactoty() = TreeViewModel.TreeViewModelFactory(getTreeRepository())
+
+    private fun getProjectRepository() = ProjectRepository.getInstance(AppNetwork.getInstance())
+    fun getProjectFactoty() = ProjectViewModel.ProjectViewModelFactory(getProjectRepository())
 
 
 }

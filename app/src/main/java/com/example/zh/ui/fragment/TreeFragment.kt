@@ -20,12 +20,6 @@ import kotlinx.android.synthetic.main.fragment_tree.*
 class TreeFragment : BaseFragment() {
     lateinit var viewModle: TreeViewModel
     var treeAdapter: TreeAdapter? = null
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        initVM()
-        initView()
-        initData()
-    }
 
     override fun setContent(): Int {
         return R.layout.fragment_tree
