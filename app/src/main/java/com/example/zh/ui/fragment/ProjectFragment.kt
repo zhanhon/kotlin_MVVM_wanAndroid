@@ -73,6 +73,8 @@ class ProjectFragment : BaseFragment() {
             viewModel.articleList.addAll(it)
 
 
+
+
         })
     }
 
