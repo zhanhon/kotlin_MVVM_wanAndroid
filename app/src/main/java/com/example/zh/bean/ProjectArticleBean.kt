@@ -2,7 +2,7 @@ package com.example.zh.bean
 
 data class ProjectArticleBean(
     val curPage: Int,
-    val datas: List<BeanData>,
+    val datas: List<ArticleBeanData>,
     val offset: Int,
     val over: Boolean,
     val pageCount: Int,
@@ -10,7 +10,7 @@ data class ProjectArticleBean(
     val total: Int
 )
 
-data class BeanData(
+data class ArticleBeanData(
     val apkLink: String,
     val author: String,
     val chapterId: Int,

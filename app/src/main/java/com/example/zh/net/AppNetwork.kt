@@ -54,6 +54,6 @@ class AppNetwork private constructor(){
 
     fun getProject(): Response<BaseBean<List<ProjectData>>> = workService.getProject().execute()
 
-    fun projectArticleList(pageNum: Int,cId: Int): Response<BaseBean<List<ProjectArticleBean>>> = workService.projectArticleList(pageNum,cId).execute()
+    fun projectArticleList(pageNum: Int,cId: Int): Response<BaseBean<ProjectArticleBean>> = workService.projectArticleList(pageNum,cId).execute()
 
 }

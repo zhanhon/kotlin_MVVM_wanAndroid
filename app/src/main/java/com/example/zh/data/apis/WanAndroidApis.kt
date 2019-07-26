@@ -62,7 +62,7 @@ interface WanAndroidApis {
      * 项目分类下的文章
      */
     @GET("project/list/{pageNum}/json")
-    fun projectArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Call<BaseBean<List<ProjectArticleBean>>>
+    fun projectArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Call<BaseBean<ProjectArticleBean>>
 
     /**
      * 项目分类

@@ -2,6 +2,7 @@ package com.example.zh.data.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.zh.bean.ArticleBeanData
 import com.example.zh.bean.BaseBean
 import com.example.zh.bean.ProjectArticleBean
 import com.example.zh.bean.ProjectData
@@ -34,10 +35,10 @@ class ProjectRepository private constructor(private val appNetwork: AppNetwork){
         val contentData = MutableLiveData<List<ProjectData>>()
         GlobalScope.launch(Dispatchers.Main) {
             val result = GlobalScope.async(Dispatchers.IO) {
-                appNetwork.getProject().body()
+                appNetwork.getProject().body()?.data
             }
             val response = result.await()
-            contentData.value = response!!.data
+            contentData.value = response
         }
         return contentData
     }
@@ -45,16 +46,15 @@ class ProjectRepository private constructor(private val appNetwork: AppNetwork){
     /**
      * 项目分类下的文章
      */
-    fun projectArticleList(pageNum: Int,cId: Int): LiveData<List<ProjectArticleBean>>{
-        val contentData = MutableLiveData<List<ProjectArticleBean>>()
+    fun projectArticleList(pageNum: Int,cId: Int): LiveData<List<ArticleBeanData>>{
+        val contentData = MutableLiveData<List<ArticleBeanData>>()
         GlobalScope.launch(Dispatchers.Main){
             val result = GlobalScope.async(Dispatchers.IO){
-                appNetwork.projectArticleList(pageNum,cId).body()
+                appNetwork.projectArticleList(pageNum,cId).body()?.data?.datas
             }
             val response = result.await()
-            contentData.value = response!!.data
+            contentData.value = response
         }
-
         return contentData
     }
 
