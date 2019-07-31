@@ -3,29 +3,12 @@ package com.example.zh.data.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.zh.bean.ArticleBeanData
-import com.example.zh.bean.BaseBean
-import com.example.zh.bean.ProjectArticleBean
 import com.example.zh.bean.ProjectData
 import com.example.zh.net.AppNetwork
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
-class ProjectRepository private constructor(private val appNetwork: AppNetwork){
-    companion object {
-        private var instance: ProjectRepository? = null
-        fun getInstance(network: AppNetwork): ProjectRepository {
-            if (instance == null) {
-                synchronized(ProjectRepository::class.java) {
-                    if (instance == null) {
-                        instance = ProjectRepository(network)
-                    }
-                }
-            }
-            return instance!!
-        }
-    }
+class ProjectRepository {
+    private val appNetwork by lazy { AppNetwork() }
 
     /**
      * 协程
@@ -57,6 +40,7 @@ class ProjectRepository private constructor(private val appNetwork: AppNetwork){
         }
         return contentData
     }
+
 
 
 }

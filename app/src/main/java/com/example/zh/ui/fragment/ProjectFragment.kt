@@ -13,7 +13,6 @@ import com.example.zh.ui.adapter.ProjectAdapter
 import com.example.zh.ui.adapter.ProjectClassAdapter
 import com.example.zh.ui.home.WebActivity
 import com.example.zh.ui.viewmodel.ProjectViewModel
-import com.example.zh.utils.InjectorUtil
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -32,7 +31,7 @@ class ProjectFragment : BaseFragment() {
     }
 
     override fun initVM() {
-        viewModel = ViewModelProviders.of(this, InjectorUtil.getProjectFactoty()).get(ProjectViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ProjectViewModel::class.java)
     }
 
     override fun initView() {
@@ -86,7 +85,6 @@ class ProjectFragment : BaseFragment() {
         viewModel.getProjectList().observe(this, Observer {
             viewModel.projectList.addAll(it)
             projectClassAdapter.notifyDataSetChanged()
-
             projectArticleList(viewModel.selectionProject(0))
         })
     }
@@ -100,9 +98,6 @@ class ProjectFragment : BaseFragment() {
             projectAdapter.notifyDataSetChanged()
             refresh.finishLoadmore()
             refresh.finishRefresh()
-
-
-
         })
     }
 

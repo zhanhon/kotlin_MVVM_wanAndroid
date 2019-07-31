@@ -8,8 +8,9 @@ import retrofit2.Response
 /**
  * 网络请求数据
  */
-class AppNetwork private constructor(){
+class AppNetwork {
     companion object {
+        @Volatile
         private var network: AppNetwork? = null
         fun getInstance(): AppNetwork {
             if (network == null) {

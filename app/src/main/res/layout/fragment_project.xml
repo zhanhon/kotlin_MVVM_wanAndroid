@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@color/white"
+              android:orientation="vertical"
              tools:context=".ui.fragment.ProjectFragment">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_project"
+        android:layout_width="match_parent"
+        android:layout_height="46dp">
+    </androidx.recyclerview.widget.RecyclerView>
+    <View
+        android:background="@color/c_grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_projectList"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_project"
-                android:layout_width="match_parent"
-                android:layout_height="46dp">
-            </androidx.recyclerview.widget.RecyclerView>
-            <View
-                android:background="@color/c_grey"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_projectList"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </androidx.recyclerview.widget.RecyclerView>
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-</FrameLayout>
+</LinearLayout>

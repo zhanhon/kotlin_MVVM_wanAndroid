@@ -7,6 +7,7 @@ import com.example.zh.bean.ArticleBean
 import com.example.zh.bean.BannerBean
 import com.example.zh.bean.BaseBean
 import com.example.zh.net.AppNetwork
+import com.example.zh.utils.SingletonHolder
 import com.shehuan.wanandroid.base.net.observer.BaseObserver
 import kotlinx.coroutines.*
 
@@ -15,20 +16,7 @@ import kotlinx.coroutines.*
  */
 class HomeRepository private constructor(private val appNetwork: AppNetwork){
 
-    companion object {
-        private var instance: HomeRepository? = null
-        fun getInstance(network: AppNetwork): HomeRepository {
-            if (instance == null) {
-                synchronized(HomeRepository::class.java) {
-                    if (instance == null) {
-                        instance = HomeRepository(network)
-                    }
-                }
-            }
-            return instance!!
-        }
-
-    }
+    companion object : SingletonHolder<HomeRepository,AppNetwork>(::HomeRepository)
 
     fun getBanner(): LiveData<List<BannerBean>>{
         val liveData = MutableLiveData<List<BannerBean>>()

@@ -20,8 +20,5 @@ object InjectorUtil {
     private fun getTreeRepository() = TreeRepository.getInstance(AppNetwork.getInstance())
     fun getTreeFactoty() = TreeViewModel.TreeViewModelFactory(getTreeRepository())
 
-    private fun getProjectRepository() = ProjectRepository.getInstance(AppNetwork.getInstance())
-    fun getProjectFactoty() = ProjectViewModel.ProjectViewModelFactory(getProjectRepository())
-
 
 }
