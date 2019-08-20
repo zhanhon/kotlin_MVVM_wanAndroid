@@ -7,7 +7,9 @@ import com.example.zh.bean.ArticleBean
 import com.example.zh.bean.BannerBean
 import com.example.zh.data.model.HomeRepository
 
-class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel(){
+class HomeViewModel : BaseViewModel(){
+    val homeRepository by lazy { HomeRepository() }
+
     var pageNum: Int = 0
     val mList: ArrayList<ArticleBean.DatasBean> = ArrayList()
     val mBannerList: ArrayList<BannerBean> = ArrayList()
@@ -17,14 +19,4 @@ class HomeViewModel(private val homeRepository: HomeRepository) : BaseViewModel(
 
     fun getBanner() = homeRepository.getBanner()
 
-
-    /**
-     * vm传参
-     */
-    @Suppress("UNCHECKED_CAST")
-    class HomeViewModelFactory(private val repository: HomeRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return HomeViewModel(repository) as T
-        }
-    }
 }

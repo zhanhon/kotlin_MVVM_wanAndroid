@@ -10,17 +10,8 @@ import com.example.zh.bean.NavBean
 import com.example.zh.bean.NavTab
 import com.example.zh.data.model.NavRepository
 
-class NavViewModel(private val navRepository: NavRepository) : BaseViewModel(){
-    /**
-     * vm传参
-     */
-    @Suppress("UNCHECKED_CAST")
-    class NavViewModelFactory(private val repository: NavRepository) : ViewModelProvider.NewInstanceFactory() {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return NavViewModel(repository) as T
-        }
-    }
-
+class NavViewModel : BaseViewModel(){
+    val navRepository by lazy { NavRepository() }
     val navFragmentList: ArrayList<NavTab> = ArrayList()
     val articleList: ArrayList<NavArticle> = ArrayList()
 

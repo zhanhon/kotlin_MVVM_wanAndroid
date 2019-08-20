@@ -10,7 +10,6 @@ import com.example.zh.base.BaseFragment
 import com.example.zh.bean.NavTab
 import com.example.zh.ui.adapter.MyPagerAdapter
 import com.example.zh.ui.viewmodel.NavViewModel
-import com.example.zh.utils.InjectorUtil
 import kotlinx.android.synthetic.main.fragment_nav.*
 
 
@@ -26,7 +25,7 @@ class NavFragment : BaseFragment() {
     }
 
     override fun initVM() {
-        viewModel = ViewModelProviders.of(this,InjectorUtil.getNavFactory()).get(NavViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(NavViewModel::class.java)
     }
 
     override fun initView() {

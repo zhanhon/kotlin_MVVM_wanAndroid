@@ -2,7 +2,6 @@ package com.example.zh.ui.fragment
 
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,7 +13,6 @@ import com.example.zh.bean.LoginBean
 import com.example.zh.ui.LoginActivity
 import com.example.zh.ui.home.LikeActivity
 import com.example.zh.ui.viewmodel.LoginViewModel
-import com.example.zh.utils.InjectorUtil
 import com.example.zh.utils.ToastUtil
 import kotlinx.android.synthetic.main.fragment_mine.*
 
@@ -30,7 +28,7 @@ class MineFragment : BaseFragment() {
     }
 
     override fun initVM() {
-        viewModel = ViewModelProviders.of(this, InjectorUtil.getLoginViewModelFactory()).get(LoginViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
 
     }
 

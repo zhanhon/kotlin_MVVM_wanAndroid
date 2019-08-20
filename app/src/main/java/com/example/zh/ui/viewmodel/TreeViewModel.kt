@@ -9,17 +9,8 @@ import com.example.zh.bean.TreeArticleList
 import com.example.zh.bean.TreeSystemBean
 import com.example.zh.data.model.TreeRepository
 
-class TreeViewModel(private val treeRepository: TreeRepository) : BaseViewModel(){
-    /**
-     * vm传参
-     */
-    @Suppress("UNCHECKED_CAST")
-    class TreeViewModelFactory(private val repository: TreeRepository) : ViewModelProvider.NewInstanceFactory() {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return TreeViewModel(repository) as T
-        }
-    }
-
+class TreeViewModel : BaseViewModel(){
+    val treeRepository by lazy { TreeRepository() }
     var numPage : Int = 0
 
     var treeList: ArrayList<TreeSystemBean> = ArrayList()

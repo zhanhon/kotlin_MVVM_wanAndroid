@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.zh.R
 import com.example.zh.base.BaseActivity
 import com.example.zh.ui.adapter.HomeAdapter
 import com.example.zh.ui.viewmodel.HomeViewModel
-import com.example.zh.utils.InjectorUtil
 import kotlinx.android.synthetic.main.activity_like.*
 
 class LikeActivity : BaseActivity() {
@@ -24,7 +22,7 @@ class LikeActivity : BaseActivity() {
     }
 
     override fun initVM() {
-        viewModel = ViewModelProviders.of(this, InjectorUtil.getHomeViewModelFactory()).get(HomeViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
     }
 
     override fun initView() {

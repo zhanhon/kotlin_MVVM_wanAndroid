@@ -12,8 +12,8 @@ import com.shehuan.wanandroid.base.net.observer.BaseObserver
 /**
  * 数据仓库
  */
-class LoginRepository private constructor(private val appNetwork: AppNetwork){
-
+class LoginRepository{
+    private val appNetwork by lazy { AppNetwork() }
     fun login(userName: String,password: String) : LiveData<LoginBean>{
         val contentData = MutableLiveData<LoginBean>()
         appNetwork.login(userName,password,object : BaseObserver<BaseBean<LoginBean>>(){
@@ -63,23 +63,6 @@ class LoginRepository private constructor(private val appNetwork: AppNetwork){
             }
         })
         return contentData
-    }
-
-
-
-    companion object {
-        private var instance: LoginRepository? = null
-        fun getInstance(network: AppNetwork): LoginRepository {
-            if (instance == null) {
-                synchronized(LoginRepository::class.java) {
-                    if (instance == null) {
-                        instance = LoginRepository(network)
-                    }
-                }
-            }
-            return instance!!
-        }
-
     }
 
 }

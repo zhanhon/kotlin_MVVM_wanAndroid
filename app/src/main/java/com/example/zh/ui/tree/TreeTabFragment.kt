@@ -3,7 +3,6 @@ package com.example.zh.ui.tree
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
@@ -14,7 +13,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.example.zh.ui.adapter.TreeTabAdapter
 import com.example.zh.ui.home.WebActivity
 import com.example.zh.ui.viewmodel.TreeViewModel
-import com.example.zh.utils.InjectorUtil
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -38,7 +36,7 @@ class TreeTabFragment : BaseFragment() {
     }
 
     override fun initVM() {
-        viewModle = ViewModelProviders.of(this, InjectorUtil.getTreeFactoty()).get(TreeViewModel::class.java)
+        viewModle = ViewModelProviders.of(this).get(TreeViewModel::class.java)
 
     }
 

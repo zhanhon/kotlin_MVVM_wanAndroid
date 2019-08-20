@@ -1,16 +1,12 @@
 package com.example.zh.ui
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.alibaba.fastjson.JSON
 import com.example.zh.R
 import com.example.zh.base.BaseActivity
-import com.example.zh.base.BaseSharePerence
 import com.example.zh.ui.viewmodel.LoginViewModel
-import com.example.zh.utils.InjectorUtil
 import com.example.zh.utils.ToastUtil
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -25,7 +21,7 @@ class LoginActivity : BaseActivity(){
     }
 
     override fun initVM() {
-        viewModel = ViewModelProviders.of(this,InjectorUtil.getLoginViewModelFactory()).get(LoginViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
     }
 
     override fun initView() {

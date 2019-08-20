@@ -1,19 +1,12 @@
 package com.example.zh.ui.tree
 
 import android.os.Bundle
-import android.os.Parcelable
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.example.zh.R
 import com.example.zh.base.BaseActivity
 import com.example.zh.bean.Children
 import com.example.zh.bean.NavTab
 import com.example.zh.ui.adapter.MyPagerAdapter
-import com.example.zh.ui.fragment.BavTabFragment
-import com.example.zh.ui.viewmodel.TreeViewModel
-import com.example.zh.utils.InjectorUtil
 import kotlinx.android.synthetic.main.activity_tree_details.*
-import kotlinx.android.synthetic.main.fragment_nav.*
 
 class TreeDetailsActivity : BaseActivity() {
     var adapter: MyPagerAdapter? = null

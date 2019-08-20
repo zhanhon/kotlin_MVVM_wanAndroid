@@ -8,21 +8,9 @@ import com.example.zh.bean.NavBean
 import com.example.zh.net.AppNetwork
 import com.shehuan.wanandroid.base.net.observer.BaseObserver
 
-class NavRepository constructor(private val appNetwork: AppNetwork){
-    companion object {
-        private var instance: NavRepository? = null
-        fun getInstance(network: AppNetwork): NavRepository{
-            if (instance == null){
-                synchronized(NavRepository::class.java){
-                    if (instance == null){
-                        instance = NavRepository(network);
-                    }
-                }
-            }
+class NavRepository{
 
-            return instance!!
-        }
-    }
+    val appNetwork by lazy { AppNetwork() }
 
     fun getNavList(): LiveData<List<NavBean>>{
         val data = MutableLiveData<List<NavBean>>()

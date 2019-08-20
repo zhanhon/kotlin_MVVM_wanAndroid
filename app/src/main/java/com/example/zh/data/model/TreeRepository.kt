@@ -9,22 +9,8 @@ import com.example.zh.bean.TreeSystemBean
 import com.example.zh.net.AppNetwork
 import com.shehuan.wanandroid.base.net.observer.BaseObserver
 
-class TreeRepository constructor(private val appNetwork: AppNetwork){
-    companion object {
-        private var instance: TreeRepository? = null
-        fun getInstance(network: AppNetwork): TreeRepository{
-            if (instance == null){
-                synchronized(TreeRepository::class.java){
-                    if (instance == null){
-                        instance = TreeRepository(network);
-                    }
-                }
-            }
-
-            return instance!!
-        }
-    }
-
+class TreeRepository{
+    val appNetwork by lazy { AppNetwork() }
     fun treeSystem(): LiveData<List<TreeSystemBean>>{
         val data = MutableLiveData<List<TreeSystemBean>>()
         appNetwork.treeSystem(object : BaseObserver<BaseBean<List<TreeSystemBean>>>(){

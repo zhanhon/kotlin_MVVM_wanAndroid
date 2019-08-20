@@ -14,9 +14,8 @@ import kotlinx.coroutines.*
 /**
  * 数据仓库
  */
-class HomeRepository private constructor(private val appNetwork: AppNetwork){
-
-    companion object : SingletonHolder<HomeRepository,AppNetwork>(::HomeRepository)
+class HomeRepository{
+    val appNetwork by lazy { AppNetwork() }
 
     fun getBanner(): LiveData<List<BannerBean>>{
         val liveData = MutableLiveData<List<BannerBean>>()

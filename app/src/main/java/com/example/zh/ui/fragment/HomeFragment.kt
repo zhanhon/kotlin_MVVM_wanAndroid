@@ -2,13 +2,10 @@ package com.example.zh.ui.fragment
 
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 
 import com.example.zh.R
@@ -17,7 +14,6 @@ import com.example.zh.ui.adapter.BannerImageLoader
 import com.example.zh.ui.adapter.HomeAdapter
 import com.example.zh.ui.home.WebActivity
 import com.example.zh.ui.viewmodel.HomeViewModel
-import com.example.zh.utils.InjectorUtil
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -39,7 +35,7 @@ class HomeFragment : BaseFragment(){
     }
 
     override fun initVM() {
-        viewModel = ViewModelProviders.of(this, InjectorUtil.getHomeViewModelFactory()).get(HomeViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
     }
 

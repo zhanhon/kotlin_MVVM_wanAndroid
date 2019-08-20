@@ -7,7 +7,6 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.example.zh.base.BaseActivity
 import com.example.zh.ui.viewmodel.MainViewModel
-import com.example.zh.utils.InjectorUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

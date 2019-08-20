@@ -6,17 +6,8 @@ import com.example.zh.base.BaseSharePerence
 import com.example.zh.base.BaseViewModel
 import com.example.zh.data.model.LoginRepository
 
-class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewModel(){
-    /**
-     * vm传参
-     */
-    @Suppress("UNCHECKED_CAST")
-    class LoginViewModelFactory(private val repository: LoginRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return LoginViewModel(repository) as T
-        }
-    }
-
+class LoginViewModel : BaseViewModel(){
+    private val loginRepository by lazy { LoginRepository() }
     val mSharePerence: BaseSharePerence = BaseSharePerence.getInstance();
 
 
