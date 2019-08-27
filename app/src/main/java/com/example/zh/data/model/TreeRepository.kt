@@ -7,7 +7,7 @@ import com.example.zh.bean.BaseBean
 import com.example.zh.bean.TreeArticleBean
 import com.example.zh.bean.TreeSystemBean
 import com.example.zh.net.AppNetwork
-import com.shehuan.wanandroid.base.net.observer.BaseObserver
+import com.example.zh.net.observer.BaseObserver
 
 class TreeRepository{
     val appNetwork by lazy { AppNetwork() }

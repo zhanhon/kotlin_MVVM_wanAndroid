@@ -2,27 +2,35 @@ package com.example.zh.data.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.zh.base.Const
 import com.example.zh.bean.ArticleBeanData
+import com.example.zh.bean.BaseBean
+import com.example.zh.bean.ProjectArticleBean
 import com.example.zh.bean.ProjectData
 import com.example.zh.net.AppNetwork
-import kotlinx.coroutines.*
+import com.example.zh.net.observer.BaseObserver
 
 class ProjectRepository {
     private val appNetwork by lazy { AppNetwork() }
 
     /**
-     * 协程
      * 项目分类
      */
     fun getProjectList(): LiveData<List<ProjectData>> {
         val contentData = MutableLiveData<List<ProjectData>>()
-        GlobalScope.launch(Dispatchers.Main) {
-            val result = GlobalScope.async(Dispatchers.IO) {
-                appNetwork.getProject().body()?.data
+        appNetwork.getProject(object : BaseObserver<BaseBean<List<ProjectData>>>(){
+            override fun onSuccess(results: BaseBean<List<ProjectData>>) {
+                if (results.errorCode == Const.CODE_SUCCESS){
+                    contentData.postValue(results.data)
+                }else{
+                    contentData.postValue(null)
+                }
             }
-            val response = result.await()
-            contentData.value = response
-        }
+
+            override fun onFailure(e: Exception) {
+                contentData.postValue(null)
+            }
+        })
         return contentData
     }
 
@@ -31,13 +39,19 @@ class ProjectRepository {
      */
     fun projectArticleList(pageNum: Int,cId: Int): LiveData<List<ArticleBeanData>>{
         val contentData = MutableLiveData<List<ArticleBeanData>>()
-        GlobalScope.launch(Dispatchers.Main){
-            val result = GlobalScope.async(Dispatchers.IO){
-                appNetwork.projectArticleList(pageNum,cId).body()?.data?.datas
+        appNetwork.projectArticleList(pageNum,cId,object : BaseObserver<BaseBean<ProjectArticleBean>>(){
+            override fun onSuccess(results: BaseBean<ProjectArticleBean>) {
+                if (results.errorCode == Const.CODE_SUCCESS){
+                    contentData.postValue(results.data?.datas)
+                }else{
+                    contentData.postValue(null)
+                }
             }
-            val response = result.await()
-            contentData.value = response
-        }
+            override fun onFailure(e: Exception) {
+                contentData.postValue(null)
+            }
+        })
+
         return contentData
     }
 

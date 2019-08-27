@@ -62,12 +62,12 @@ interface WanAndroidApis {
      * 项目分类下的文章
      */
     @GET("project/list/{pageNum}/json")
-    fun projectArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Call<BaseBean<ProjectArticleBean>>
+    fun projectArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Observable<BaseBean<ProjectArticleBean>>
 
     /**
      * 项目分类
      */
     @GET("project/tree/json")
-    fun getProject(): Call<BaseBean<List<ProjectData>>>
+    fun getProject(): Observable<BaseBean<List<ProjectData>>>
 
 }

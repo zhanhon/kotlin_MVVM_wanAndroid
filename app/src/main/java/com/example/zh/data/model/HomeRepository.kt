@@ -7,9 +7,7 @@ import com.example.zh.bean.ArticleBean
 import com.example.zh.bean.BannerBean
 import com.example.zh.bean.BaseBean
 import com.example.zh.net.AppNetwork
-import com.example.zh.utils.SingletonHolder
-import com.shehuan.wanandroid.base.net.observer.BaseObserver
-import kotlinx.coroutines.*
+import com.example.zh.net.observer.BaseObserver
 
 /**
  * 数据仓库
