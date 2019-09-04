@@ -49,7 +49,7 @@ class MineFragment : BaseFragment() {
             })
         }
 
-        tv_like.setOnClickListener {
+        ll_like.setOnClickListener {
             val loginBean: LoginBean? = viewModel.mSharePerence.getUserInfo()
             if (loginBean != null){
                 startActivity(Intent(context,LikeActivity::class.java))

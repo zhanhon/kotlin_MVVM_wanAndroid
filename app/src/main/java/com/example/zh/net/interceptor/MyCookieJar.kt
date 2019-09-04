@@ -1,23 +1,26 @@
 package com.example.zh.net.interceptor
 
+import com.example.zh.net.cookie.CookieStore
+import com.example.zh.utils.MyLog
 import okhttp3.Cookie
 import okhttp3.CookieJar
 import okhttp3.HttpUrl
-import android.util.Log
 
 
 class MyCookieJar : CookieJar {
-    private val cookieStore = HashMap<String,MutableList<Cookie>>()
-    override fun saveFromResponse(url: HttpUrl, cookies: MutableList<Cookie>) {
-        cookieStore.put(url.host(), cookies)
-        Log.e("log saveFromResponse","url="+url.toString())
-        cookies.forEach {
-            Log.e("log saveFromResponse","Cookie="+it.toString())
-        }
+    var cookieStore: CookieStore
+
+    constructor(cookieStores: CookieStore){
+        this.cookieStore = cookieStores
     }
 
-    override fun loadForRequest(url: HttpUrl): MutableList<Cookie> {
-        val cookies = cookieStore[url.host()]
-        return cookies ?: ArrayList()
+    override fun saveFromResponse (url: HttpUrl, cookies: List<Cookie>) {
+        MyLog.d(url.host())
+        cookieStore.saveCookie(url, cookies)
     }
+
+    override fun loadForRequest(url: HttpUrl): List<Cookie> {
+        return cookieStore.loadCookie(url)
+    }
+
 }

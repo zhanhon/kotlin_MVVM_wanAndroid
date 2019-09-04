@@ -7,11 +7,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.home.LikeActivity">
+    <include layout="@layout/layout_all_title"/>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_like"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/sm_like"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_like"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.recyclerview.widget.RecyclerView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 </LinearLayout>

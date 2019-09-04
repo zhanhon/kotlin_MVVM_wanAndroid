@@ -7,20 +7,6 @@ import com.example.zh.net.observer.BaseObserver
  * 网络请求数据
  */
 class AppNetwork {
-    companion object {
-        @Volatile
-        private var network: AppNetwork? = null
-        fun getInstance(): AppNetwork {
-            if (network == null) {
-                synchronized(AppNetwork::class.java) {
-                    if (network == null) {
-                        network = AppNetwork()
-                    }
-                }
-            }
-            return network!!
-        }
-    }
     private val httpMethods = HttpMethods.getInstance()
     private val workService = httpMethods.getApiService()
 
@@ -29,6 +15,9 @@ class AppNetwork {
      */
     fun articleList(pageNum: Int, baseObserver: BaseObserver<BaseBean<ArticleBean>>)
             = workService.articleList(pageNum).compose(httpMethods.setThread()).subscribe(baseObserver)
+
+    fun likeArticleList(pageNum: Int, baseObserver: BaseObserver<BaseBean<ArticleBean>>)
+            = workService.likeArticleList(pageNum).compose(httpMethods.setThread()).subscribe(baseObserver)
 
     fun banner(baseObserver: BaseObserver<BaseBean<List<BannerBean>>>)
             = workService.banner().compose(httpMethods.setThread()).subscribe(baseObserver)
@@ -56,5 +45,12 @@ class AppNetwork {
 
     fun projectArticleList(pageNum: Int, cId: Int, baseObserver: BaseObserver<BaseBean<ProjectArticleBean>>)
             = workService.projectArticleList(pageNum,cId).compose(httpMethods.setThread()).subscribe(baseObserver)
+
+    fun likeArticle(id: Int,baseObserver: BaseObserver<BaseBean<String>>)
+            = workService.likeArticle(id).compose(httpMethods.setThread()).subscribe(baseObserver)
+
+    fun cancelArticle(id: Int,baseObserver: BaseObserver<BaseBean<String>>)
+            = workService.cancelArticle(id).compose(httpMethods.setThread()).subscribe(baseObserver)
+
 
 }

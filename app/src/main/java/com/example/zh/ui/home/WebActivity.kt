@@ -1,12 +1,12 @@
 package com.example.zh.ui.home
 
 import android.os.Bundle
-import android.webkit.WebChromeClient
 import android.webkit.WebView
 import com.example.zh.R
 import com.example.zh.base.BaseActivity
 import android.widget.LinearLayout
 import com.just.agentweb.AgentWeb
+import com.just.agentweb.WebChromeClient
 import kotlinx.android.synthetic.main.activity_web.*
 import kotlinx.android.synthetic.main.layout_all_title.*
 

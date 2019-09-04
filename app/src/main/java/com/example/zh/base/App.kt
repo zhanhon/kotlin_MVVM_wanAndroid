@@ -1,6 +1,8 @@
 package com.example.zh.base
 
 import android.app.Application
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 
 class App : Application() {
 
@@ -8,6 +10,7 @@ class App : Application() {
         super.onCreate()
         instance = this
         BaseAppContext.init(this)
+        Logger.addLogAdapter(AndroidLogAdapter())
     }
 
     companion object {

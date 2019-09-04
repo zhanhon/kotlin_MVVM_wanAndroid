@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.alibaba.fastjson.JSON
 import com.example.zh.bean.LoginBean
+import okhttp3.Cookie
 
 /**
  * Created by admin on 2017/3/8.
@@ -34,5 +35,6 @@ class BaseSharePerence {
         val string : String? = mSharedPreferences.getString("key_info",null)
         return JSON.parseObject(string,LoginBean::class.java)
     }
+
 }
 

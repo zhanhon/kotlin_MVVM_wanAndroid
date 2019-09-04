@@ -12,13 +12,13 @@
         android:paddingLeft="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <CheckBox
+        <ImageView
+            android:padding="4dp"
             android:id="@+id/vb_collect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerVertical="true"
-            android:background="?selectableItemBackgroundBorderless"
-            android:button="@drawable/selector_collect_check"
+            android:src="@drawable/ic_uncollect"
             android:gravity="center"/>
         <TextView
             android:layout_toRightOf="@+id/vb_collect"

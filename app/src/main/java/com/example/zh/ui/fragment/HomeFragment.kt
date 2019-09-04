@@ -2,6 +2,7 @@ package com.example.zh.ui.fragment
 
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -10,10 +11,13 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 
 import com.example.zh.R
 import com.example.zh.base.BaseFragment
+import com.example.zh.bean.ArticleBean
 import com.example.zh.ui.adapter.BannerImageLoader
 import com.example.zh.ui.adapter.HomeAdapter
 import com.example.zh.ui.home.WebActivity
 import com.example.zh.ui.viewmodel.HomeViewModel
+import com.example.zh.utils.MyLog
+import com.example.zh.utils.ToastUtil
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -51,6 +55,18 @@ class HomeFragment : BaseFragment(){
                 val link = viewModel.mList.get(position).link
                 intent.putExtra("url",link)
                 startActivity(intent)
+            }
+        }
+
+        homeAdapter.onItemChildClickListener = object : BaseQuickAdapter.OnItemChildClickListener{
+            override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                val item = viewModel.mList.get(position)
+                if (!item.isCollect){
+                    likeArticle(item.id,item,position)
+                }else{
+                    cancelArticle(item.id,item,position)
+                }
+
             }
         }
 
@@ -113,8 +129,26 @@ class HomeFragment : BaseFragment(){
                 viewModel.pageNum --
             }
         })
+    }
 
+    fun likeArticle(id: Int,item: ArticleBean.DatasBean,position: Int){
+        viewModel.likeArticle(id).observe(this, Observer {
+            if (it != null){
+                ToastUtil.showToast(it)
+                item.isCollect = true
+                homeAdapter.notifyItemChanged(position)
+            }
+        })
+    }
 
+    fun cancelArticle(id: Int,item: ArticleBean.DatasBean,position: Int){
+        viewModel.cancelArticle(id).observe(this, Observer {
+            if (it != null){
+                ToastUtil.showToast(it)
+                item.isCollect = false
+                homeAdapter.notifyItemChanged(position)
+            }
+        })
     }
 
 

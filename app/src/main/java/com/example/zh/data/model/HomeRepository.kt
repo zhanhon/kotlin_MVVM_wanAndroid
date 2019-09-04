@@ -8,6 +8,9 @@ import com.example.zh.bean.BannerBean
 import com.example.zh.bean.BaseBean
 import com.example.zh.net.AppNetwork
 import com.example.zh.net.observer.BaseObserver
+import com.example.zh.utils.ToastUtil
+import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.*
 
 /**
  * 数据仓库
@@ -51,6 +54,59 @@ class HomeRepository{
         return contentData
     }
 
+    fun likeArticle(id: Int): LiveData<String>{
+        val contentData = MutableLiveData<String>()
+        appNetwork.likeArticle(id,object: BaseObserver<BaseBean<String>>(){
+            override fun onSuccess(results: BaseBean<String>) {
+                if (results.isSuccess()){
+                    contentData.postValue("收藏成功")
+                }else{
+                    contentData.postValue(null)
+                    ToastUtil.showToast("请先登录")
+                }
+            }
+            override fun onFailure(e: Exception) {
+                contentData.postValue(null)
+            }
+        })
+        return contentData
+    }
+
+    fun cancelArticle(id: Int): LiveData<String>{
+        val contentData = MutableLiveData<String>()
+        appNetwork.cancelArticle(id,object: BaseObserver<BaseBean<String>>(){
+            override fun onSuccess(results: BaseBean<String>) {
+                if (results.isSuccess()){
+                    contentData.postValue("收藏成功")
+                }else{
+                    contentData.postValue(null)
+                    ToastUtil.showToast("请先登录")
+                }
+            }
+            override fun onFailure(e: Exception) {
+                contentData.postValue(null)
+            }
+        })
+        return contentData
+    }
+
+    fun likeArticleList(pageNum: Int): LiveData<List<ArticleBean.DatasBean>>{
+        val contentData = MutableLiveData<List<ArticleBean.DatasBean>>()
+        appNetwork.likeArticleList(pageNum,object : BaseObserver<BaseBean<ArticleBean>>() {
+            override fun onSuccess(results: BaseBean<ArticleBean>) {
+                if (results.isSuccess()){
+                    contentData.postValue(results.data?.datas)
+                }else{
+                    contentData.postValue(null)
+                }
+            }
+            override fun onFailure(e: Exception) {
+                contentData.postValue(null)
+            }
+        })
+
+        return contentData
+    }
 
 }
 
