@@ -60,13 +60,13 @@ interface WanAndroidApis {
      * 项目分类下的文章
      */
     @GET("project/list/{pageNum}/json")
-    fun projectArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Observable<BaseBean<ProjectArticleBean>>
+    suspend fun projectArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): BaseBean<ProjectArticleBean>
 
     /**
      * 项目分类
      */
     @GET("project/tree/json")
-    fun getProject(): Observable<BaseBean<List<ProjectData>>>
+    suspend fun getProject(): BaseBean<List<ProjectData>>
 
     /**
      * 收藏文章列表
@@ -81,4 +81,5 @@ interface WanAndroidApis {
     //取消收藏
     @POST("lg/uncollect_originId/{id}/json")
     fun cancelArticle(@Path("id") id: Int): Observable<BaseBean<String>>
+
 }

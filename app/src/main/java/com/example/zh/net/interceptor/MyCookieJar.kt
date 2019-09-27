@@ -15,7 +15,6 @@ class MyCookieJar : CookieJar {
     }
 
     override fun saveFromResponse (url: HttpUrl, cookies: List<Cookie>) {
-        MyLog.d(url.host())
         cookieStore.saveCookie(url, cookies)
     }
 

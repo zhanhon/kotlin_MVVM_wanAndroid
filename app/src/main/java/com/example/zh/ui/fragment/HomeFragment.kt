@@ -105,6 +105,9 @@ class HomeFragment : BaseFragment(){
 
     fun getBanner(){
         viewModel.getBanner().observe(this, Observer {
+            if (it == null){
+                return@Observer
+            }
             viewModel.mBannerList.clear()
             viewModel.mTitleList.clear()
             viewModel.mBannerList.addAll(it)

@@ -1,6 +1,5 @@
 package com.example.zh.ui.fragment
 
-
 import android.content.Intent
 import android.view.View
 import androidx.lifecycle.Observer
@@ -83,21 +82,25 @@ class ProjectFragment : BaseFragment() {
 
     fun getProjectList(){
         viewModel.getProjectList().observe(this, Observer {
-            viewModel.projectList.addAll(it)
-            projectClassAdapter.notifyDataSetChanged()
-            projectArticleList(viewModel.selectionProject(0))
+            if (it != null){
+                viewModel.projectList.addAll(it)
+                projectClassAdapter.notifyDataSetChanged()
+                projectArticleList(viewModel.selectionProject(0))
+            }
         })
     }
 
     fun projectArticleList(cId: Int,pageNum: Int = 1){
         viewModel.projectArticleList(pageNum,cId).observe(this, Observer {
-            if (viewModel.pageNum == 1){
-                viewModel.articleList.clear()
+            if (it != null){
+                if (viewModel.pageNum == 1){
+                    viewModel.articleList.clear()
+                }
+                viewModel.articleList.addAll(it)
+                projectAdapter.notifyDataSetChanged()
+                refresh.finishLoadmore()
+                refresh.finishRefresh()
             }
-            viewModel.articleList.addAll(it)
-            projectAdapter.notifyDataSetChanged()
-            refresh.finishLoadmore()
-            refresh.finishRefresh()
         })
     }
 

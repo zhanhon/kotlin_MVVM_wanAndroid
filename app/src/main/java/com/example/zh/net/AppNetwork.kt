@@ -40,11 +40,9 @@ class AppNetwork {
     fun treeArticleList(pageNum: Int,cId: Int, baseObserver: BaseObserver<BaseBean<TreeArticleBean>>)
             = workService.treeArticleList(pageNum,cId).compose(httpMethods.setThread()).subscribe(baseObserver)
 
-    fun getProject(baseObserver: BaseObserver<BaseBean<List<ProjectData>>>)
-            = workService.getProject().compose(httpMethods.setThread()).subscribe(baseObserver)
+    suspend fun getProject() = workService.getProject()
 
-    fun projectArticleList(pageNum: Int, cId: Int, baseObserver: BaseObserver<BaseBean<ProjectArticleBean>>)
-            = workService.projectArticleList(pageNum,cId).compose(httpMethods.setThread()).subscribe(baseObserver)
+    suspend fun projectArticleList(pageNum: Int, cId: Int) = workService.projectArticleList(pageNum,cId)
 
     fun likeArticle(id: Int,baseObserver: BaseObserver<BaseBean<String>>)
             = workService.likeArticle(id).compose(httpMethods.setThread()).subscribe(baseObserver)

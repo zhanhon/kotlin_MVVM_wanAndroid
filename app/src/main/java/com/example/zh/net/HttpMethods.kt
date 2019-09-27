@@ -69,7 +69,6 @@ class HttpMethods private constructor() {
         val cacheFile = File(App.getApp().getExternalCacheDir(), CACHE_NAME)
         val cache = Cache(cacheFile, (1024 * 1024 * 50).toLong())
         okHttpBuilder.cache(cache).addInterceptor(CacheInterceptor())//设置缓存
-//        okHttpBuilder.addInterceptor(HeaderInterceptor())//设置头信息
         //配置log打印拦截器
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY

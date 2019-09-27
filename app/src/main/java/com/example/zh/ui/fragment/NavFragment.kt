@@ -39,6 +39,10 @@ class NavFragment : BaseFragment() {
         showLoadingDialog()
         viewModel.getNavList().observe(this, Observer {
             dismissLoadingDialog()
+            if (it == null){
+                return@Observer
+            }
+
             viewModel.navFragmentList.clear()
             viewModel.articleList.clear()
 

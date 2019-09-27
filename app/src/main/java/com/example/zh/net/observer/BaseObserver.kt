@@ -1,5 +1,6 @@
 package com.example.zh.net.observer
 
+import com.example.zh.net.ApiException
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
@@ -15,6 +16,7 @@ import io.reactivex.disposables.Disposable
     }
 
     override fun onError(e: Throwable) {
+        val msg = ApiException.exceptionHandler(e)
         onFailure(e as Exception)
         e.printStackTrace()
     }

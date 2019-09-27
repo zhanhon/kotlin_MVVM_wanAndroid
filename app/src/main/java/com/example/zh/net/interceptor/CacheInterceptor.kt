@@ -18,7 +18,7 @@ class CacheInterceptor : Interceptor{
                     .build()
         }
         val response = chain.proceed(request)
-        if (!NetUtil.isNetworkConnected()) {
+        if (NetUtil.isNetworkConnected()) {
             val maxAge = 0
             // 有网络时 设置缓存超时时间0个小时
             response.newBuilder()

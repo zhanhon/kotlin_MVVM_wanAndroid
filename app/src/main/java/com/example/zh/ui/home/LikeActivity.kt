@@ -55,7 +55,7 @@ class LikeActivity : BaseActivity() {
         homeAdapter.onItemChildClickListener = object : BaseQuickAdapter.OnItemChildClickListener{
             override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
                 val item = viewModel.mList.get(position)
-                cancelArticle(item.id,item,position)
+                cancelArticle(item.id,position)
             }
         }
 
@@ -96,7 +96,7 @@ class LikeActivity : BaseActivity() {
         })
     }
 
-    fun cancelArticle(id: Int, item: ArticleBean.DatasBean, position: Int){
+    fun cancelArticle(id: Int,position: Int){
         viewModel.cancelArticle(id).observe(this, Observer {
             if (it != null){
                 ToastUtil.showToast(it)
