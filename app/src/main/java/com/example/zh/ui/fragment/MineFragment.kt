@@ -39,7 +39,7 @@ class MineFragment : BaseFragment() {
 
         btn_logout.setOnClickListener {
             viewModel.logout().observe(this, Observer {
-                if (it != null && it.errorCode == 0){
+                if (it != null && it.isSuccess()){
                     ToastUtil.showToast("退出登录")
                     BaseSharePerence.getInstance().setUserInfo(null)
                     setUserInfo()

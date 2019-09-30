@@ -9,8 +9,6 @@ import com.example.zh.bean.BaseBean
 import com.example.zh.net.AppNetwork
 import com.example.zh.net.observer.BaseObserver
 import com.example.zh.utils.ToastUtil
-import io.reactivex.disposables.Disposable
-import kotlinx.coroutines.*
 
 /**
  * 数据仓库
@@ -22,7 +20,7 @@ class HomeRepository{
         val liveData = MutableLiveData<List<BannerBean>>()
         appNetwork.banner(object : BaseObserver<BaseBean<List<BannerBean>>>(){
             override fun onSuccess(results: BaseBean<List<BannerBean>>) {
-                if (results.errorCode == Const.CODE_SUCCESS){
+                if (results.isSuccess()){
                     liveData.postValue(results.data)
                 }else{
                     liveData.postValue(null)
@@ -41,7 +39,7 @@ class HomeRepository{
         val contentData = MutableLiveData<List<ArticleBean.DatasBean>>()
         appNetwork.articleList(pageNum,object: BaseObserver<BaseBean<ArticleBean>>(){
             override fun onSuccess(results: BaseBean<ArticleBean>) {
-                if (results.errorCode == Const.CODE_SUCCESS){
+                if (results.isSuccess()){
                     contentData.postValue(results.data?.datas)
                 }else{
                     contentData.postValue(null)

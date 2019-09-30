@@ -7,7 +7,6 @@ import com.example.zh.base.Const
 import com.example.zh.data.apis.WanAndroidApis
 import com.example.zh.net.cookie.SPCookieStore
 import com.example.zh.net.interceptor.CacheInterceptor
-import com.example.zh.net.interceptor.HeaderInterceptor
 import com.example.zh.net.interceptor.MyCookieJar
 
 import java.io.File
@@ -24,8 +23,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
-
-
 class HttpMethods private constructor() {
 
     private val BASE_URL = Const.WAN_ANDROID_UTL
@@ -34,17 +31,7 @@ class HttpMethods private constructor() {
      * @return
      */
     private var retrofit: Retrofit? = null
-        private set
-    /**
-     * 获取httpService
-     *
-     * @return
-     */
 
-    /**
-     * 请求失败重连次数
-     */
-    private val RETRY_COUNT = 0
     private val okHttpBuilder: OkHttpClient.Builder
 
     companion object {
@@ -107,7 +94,6 @@ class HttpMethods private constructor() {
             override fun apply(upstream: Observable<T>): ObservableSource<T> {
                 return upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
             }
-
         }
     }
 

@@ -92,14 +92,14 @@ class ProjectFragment : BaseFragment() {
 
     fun projectArticleList(cId: Int,pageNum: Int = 1){
         viewModel.projectArticleList(pageNum,cId).observe(this, Observer {
+            refresh.finishLoadmore()
+            refresh.finishRefresh()
             if (it != null){
                 if (viewModel.pageNum == 1){
                     viewModel.articleList.clear()
                 }
                 viewModel.articleList.addAll(it)
                 projectAdapter.notifyDataSetChanged()
-                refresh.finishLoadmore()
-                refresh.finishRefresh()
             }
         })
     }

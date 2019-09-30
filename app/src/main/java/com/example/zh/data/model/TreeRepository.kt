@@ -1,50 +1,12 @@
 package com.example.zh.data.model
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.zh.base.Const
-import com.example.zh.bean.BaseBean
-import com.example.zh.bean.TreeArticleBean
-import com.example.zh.bean.TreeSystemBean
-import com.example.zh.net.AppNetwork
-import com.example.zh.net.observer.BaseObserver
+import com.example.zh.base.BaseModel
 
-class TreeRepository{
-    val appNetwork by lazy { AppNetwork() }
-    fun treeSystem(): LiveData<List<TreeSystemBean>>{
-        val data = MutableLiveData<List<TreeSystemBean>>()
-        appNetwork.treeSystem(object : BaseObserver<BaseBean<List<TreeSystemBean>>>(){
-            override fun onSuccess(results: BaseBean<List<TreeSystemBean>>) {
-                if (results.errorCode == Const.CODE_SUCCESS){
-                    data.postValue(results.data)
-                }else{
-                    data.postValue(null)
-                }
-            }
-            override fun onFailure(e: Exception) {
-                data.postValue(null)
-            }
-        })
-        return data
-    }
+class TreeRepository : BaseModel(){
+    suspend fun treeSystem() = workService.treeSystem()
 
 
-    fun treeArticleList(numPage: Int,cId: Int): LiveData<TreeArticleBean>{
-        val data = MutableLiveData<TreeArticleBean>()
-        appNetwork.treeArticleList(numPage,cId,object : BaseObserver<BaseBean<TreeArticleBean>>(){
-            override fun onSuccess(results: BaseBean<TreeArticleBean>) {
-                if (results.errorCode == Const.CODE_SUCCESS){
-                    data.postValue(results.data)
-                }else{
-                    data.postValue(null)
-                }
-            }
-            override fun onFailure(e: Exception) {
-                data.postValue(null)
-            }
-        })
-        return data
-    }
+    suspend fun treeArticleList(numPage: Int,cId: Int) = workService.treeArticleList(numPage,cId)
 
 
 }

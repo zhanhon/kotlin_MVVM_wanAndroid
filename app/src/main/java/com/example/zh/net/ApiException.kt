@@ -15,18 +15,17 @@ import retrofit2.HttpException
  */
 object ApiException {
     fun exceptionHandler(e: Throwable): String {
-        var errorMsg = "未知错误"
+        var errorMsg = "未知异常，请重试"
         if (e is UnknownHostException) {
-            errorMsg = "网络不可用"
+            errorMsg = "服务器异常，请稍后重试"
         } else if (e is SocketTimeoutException) {
-            errorMsg = "请求网络超时"
+            errorMsg = "网络连接超时，请稍后重试"
         } else if (e is HttpException) {
             errorMsg = convertStatusCode(e)
         } else if (e is ParseException || e is JSONException) {
             errorMsg = "数据解析错误"
         } else if (e is ConnectException) {
             errorMsg = "网络连接异常"
-
         }
         return errorMsg
     }
@@ -34,7 +33,7 @@ object ApiException {
     private fun convertStatusCode(httpException: HttpException): String {
         val msg: String
         if (httpException.code() >= 500 && httpException.code() < 600) {
-            msg = "服务器处理请求出错"
+            msg = "服务器处理异常"
         } else if (httpException.code() >= 400 && httpException.code() < 500) {
             msg = "服务器无法处理请求"
         } else if (httpException.code() >= 300 && httpException.code() < 400) {

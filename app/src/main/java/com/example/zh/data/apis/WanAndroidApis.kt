@@ -22,39 +22,39 @@ interface WanAndroidApis {
      */
     @FormUrlEncoded
     @POST("user/register")
-    fun register(@Field("username")username: String,@Field("password")password: String,
-                 @Field("repassword")repassword: String): Observable<BaseBean<LoginBean>>
+    suspend fun register(@Field("username")username: String,@Field("password")password: String,
+                 @Field("repassword")repassword: String): BaseBean<LoginBean>
 
     /**
      * 登录
      */
     @FormUrlEncoded
     @POST("user/login")
-    fun login(@Field("username")username: String,@Field("password")password: String): Observable<BaseBean<LoginBean>>
+    suspend fun login(@Field("username")username: String,@Field("password")password: String): BaseBean<LoginBean>
 
     /**
      * 退出
      */
     @GET("user/logout/json")
-    fun logout(): Observable<BaseBean<String>>
+    suspend fun logout(): BaseBean<String>
 
     /**
      * 导航
      */
     @GET("navi/json")
-    fun navList(): Observable<BaseBean<List<NavBean>>>
+    suspend fun navList(): BaseBean<List<NavBean>>
 
     /**
      * 体系
      */
     @GET("tree/json")
-    fun treeSystem(): Observable<BaseBean<List<TreeSystemBean>>>
+    suspend fun treeSystem(): BaseBean<List<TreeSystemBean>>
 
     /**
      * 知识体系下的文章
      */
     @GET("article/list/{pageNum}/json")
-    fun treeArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): Observable<BaseBean<TreeArticleBean>>
+    suspend fun treeArticleList(@Path("pageNum") pageNum: Int,@Query("cid") cId:Int): BaseBean<TreeArticleBean>
 
     /**
      * 项目分类下的文章
