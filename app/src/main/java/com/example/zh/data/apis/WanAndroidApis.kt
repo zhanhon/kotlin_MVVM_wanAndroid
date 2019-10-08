@@ -78,8 +78,13 @@ interface WanAndroidApis {
     @POST("lg/collect/{id}/json")
     fun likeArticle(@Path("id") id: Int): Observable<BaseBean<String>>
 
-    //取消收藏
+    //取消收藏（文章列表）
     @POST("lg/uncollect_originId/{id}/json")
     fun cancelArticle(@Path("id") id: Int): Observable<BaseBean<String>>
+
+    //取消收藏（我的页面）
+    @POST("lg/uncollect/{id}/json")
+    @FormUrlEncoded
+    fun cancelUncollect(@Path("id") id: Int,@Field("originId") originId: Int = -1): Observable<BaseBean<String>>
 
 }

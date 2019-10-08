@@ -1,11 +1,10 @@
 package com.example.zh.ui.adapter
 
-import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.example.zh.R
-import com.example.zh.bean.ArticleBean
 import com.example.zh.bean.TreeArticleList
 
 class TreeTabAdapter(datas: List<TreeArticleList>)
@@ -16,7 +15,14 @@ class TreeTabAdapter(datas: List<TreeArticleList>)
         val tvAuthorName: TextView = holder.getView(R.id.tv_author_name)
         val tvTypeName: TextView = holder.getView(R.id.tv_type_name)
         val tvTime: TextView = holder.getView(R.id.tv_time)
-        val vbCollect: CheckBox = holder.getView(R.id.vb_collect)
+        val vbCollect: ImageView = holder.getView(R.id.vb_collect)
+        holder.addOnClickListener(R.id.vb_collect)
+        if (item.collect){
+            vbCollect.setImageResource(R.drawable.ic_collected)
+        }else{
+            vbCollect.setImageResource(R.drawable.ic_uncollect)
+
+        }
         tvMainTitle.setText(item.title)
         tvAuthorName.setText(item.author)
         tvTypeName.setText(item.superChapterName)

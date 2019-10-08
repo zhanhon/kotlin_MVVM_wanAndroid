@@ -26,6 +26,7 @@ class ArticleBean {
             var envelopePic: String? = null
             var title: String? = null
             var id: Int = 0
+            var originId: Int = -1
             var publishTime: Long = 0
             var isFresh: Boolean = false
             var courseId: Int = 0

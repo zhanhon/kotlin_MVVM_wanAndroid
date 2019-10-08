@@ -3,6 +3,7 @@ package com.example.zh.ui.tree
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
@@ -10,9 +11,12 @@ import com.example.zh.R
 import com.example.zh.base.BaseFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.example.zh.bean.ArticleBean
+import com.example.zh.bean.TreeArticleList
 import com.example.zh.ui.adapter.TreeTabAdapter
 import com.example.zh.ui.home.WebActivity
 import com.example.zh.ui.viewmodel.TreeViewModel
+import com.example.zh.utils.ToastUtil
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -22,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_tree_tab.*
 class TreeTabFragment : BaseFragment() {
     var children_id : Int? = null
     lateinit var viewModle: TreeViewModel
-    var treeTabAdapter : TreeTabAdapter? = null
+    lateinit var treeTabAdapter : TreeTabAdapter
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initVM()
@@ -44,13 +48,26 @@ class TreeTabFragment : BaseFragment() {
         treeTabAdapter = TreeTabAdapter(viewModle.treeArticleList)
         rv_tree_tab.layoutManager = LinearLayoutManager(context)
         rv_tree_tab.adapter = treeTabAdapter
-        treeTabAdapter?.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+        treeTabAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             val intent = Intent()
             intent.setClass(context, WebActivity::class.java)
             val link = viewModle.treeArticleList.get(position).link
             intent.putExtra("url",link)
             context?.startActivity(intent)
         }
+
+        treeTabAdapter.onItemChildClickListener = object : BaseQuickAdapter.OnItemChildClickListener{
+            override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                val item = viewModle.treeArticleList.get(position)
+                if (!item.collect){
+                    likeArticle(item.id,item,position)
+                }else{
+                    cancelArticle(item.id,item,position)
+                }
+            }
+
+        }
+
 
         sr_smart_tree_tab.setRefreshFooter(ClassicsFooter(context))
         sr_smart_tree_tab.setRefreshHeader(ClassicsHeader(context))
@@ -84,12 +101,33 @@ class TreeTabFragment : BaseFragment() {
                     viewModle.treeArticleList.clear()
                 }
                 viewModle.treeArticleList.addAll(it.datas)
-                treeTabAdapter?.notifyDataSetChanged()
+                treeTabAdapter.notifyDataSetChanged()
             }else{
                 viewModle.numPage --
             }
         })
     }
+
+    fun likeArticle(id: Int, item: TreeArticleList, position: Int){
+        viewModle.likeArticle(id).observe(this, Observer {
+            if (it != null){
+                ToastUtil.showToast(it)
+                item.collect = true
+                treeTabAdapter.notifyItemChanged(position)
+            }
+        })
+    }
+
+    fun cancelArticle(id: Int, item: TreeArticleList, position: Int){
+        viewModle.cancelArticle(id).observe(this, Observer {
+            if (it != null){
+                ToastUtil.showToast(it)
+                item.collect = false
+                treeTabAdapter.notifyItemChanged(position)
+            }
+        })
+    }
+
 
 
 }

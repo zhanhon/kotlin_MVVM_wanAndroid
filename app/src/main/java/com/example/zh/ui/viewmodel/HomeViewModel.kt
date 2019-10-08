@@ -19,6 +19,7 @@ class HomeViewModel : BaseViewModel(){
 
     fun likeArticle(id: Int) = homeRepository.likeArticle(id)
     fun cancelArticle(id: Int) = homeRepository.cancelArticle(id)
+    fun cancelUncollect(id: Int,originId: Int) = homeRepository.cancelUncollect(id,originId)
 
     fun likeArticleList(pageNum: Int) = homeRepository.likeArticleList(pageNum)
 

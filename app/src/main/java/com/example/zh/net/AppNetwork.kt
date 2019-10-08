@@ -28,5 +28,8 @@ class AppNetwork {
     fun cancelArticle(id: Int,baseObserver: BaseObserver<BaseBean<String>>)
             = workService.cancelArticle(id).compose(httpMethods.setThread()).subscribe(baseObserver)
 
+    fun cancelUncollect(id: Int,originId: Int,baseObserver: BaseObserver<BaseBean<String>>)
+            = workService.cancelUncollect(id).compose(httpMethods.setThread()).subscribe(baseObserver)
+
 
 }

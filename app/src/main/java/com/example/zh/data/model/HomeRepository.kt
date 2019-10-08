@@ -70,12 +70,30 @@ class HomeRepository{
         return contentData
     }
 
+    fun cancelUncollect(id: Int,originId: Int): LiveData<String>{
+        val contentData = MutableLiveData<String>()
+        appNetwork.cancelUncollect(id,originId,object: BaseObserver<BaseBean<String>>(){
+            override fun onSuccess(results: BaseBean<String>) {
+                if (results.isSuccess()){
+                    contentData.postValue("取消成功")
+                }else{
+                    contentData.postValue(null)
+                    ToastUtil.showToast("请先登录")
+                }
+            }
+            override fun onFailure(e: Exception) {
+                contentData.postValue(null)
+            }
+        })
+        return contentData
+    }
+
     fun cancelArticle(id: Int): LiveData<String>{
         val contentData = MutableLiveData<String>()
         appNetwork.cancelArticle(id,object: BaseObserver<BaseBean<String>>(){
             override fun onSuccess(results: BaseBean<String>) {
                 if (results.isSuccess()){
-                    contentData.postValue("收藏成功")
+                    contentData.postValue("取消成功")
                 }else{
                     contentData.postValue(null)
                     ToastUtil.showToast("请先登录")

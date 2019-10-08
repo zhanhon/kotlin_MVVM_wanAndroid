@@ -32,5 +32,8 @@ class TreeViewModel : BaseViewModel(){
         return data
     }
 
+    fun likeArticle(id: Int) = treeRepository.likeArticle(id)
+    fun cancelArticle(id: Int) = treeRepository.cancelArticle(id)
+
 
 }

@@ -9,29 +9,28 @@ data class TreeArticleBean(
     val size: Int,
     val total: Int
 )
-
-data class TreeArticleList(
-    val apkLink: String,
-    val author: String,
-    val chapterId: Int,
-    val chapterName: String,
-    val collect: Boolean,
-    val courseId: Int,
-    val desc: String,
-    val envelopePic: String,
-    val fresh: Boolean,
-    val id: Int,
-    val link: String,
-    val niceDate: String,
-    val origin: String,
-    val projectLink: String,
-    val publishTime: Long,
-    val superChapterId: Int,
-    val superChapterName: String,
-    val tags: List<Any>,
-    val title: String,
-    val type: Int,
-    val userId: Int,
-    val visible: Int,
-    val zan: Int
-)
+class TreeArticleList{
+    var apkLink: String? = null
+    var author: String? = null
+    var chapterId: Int = 0
+    var chapterName: String? = null
+    var collect: Boolean = false
+    var courseId: Int = 0
+    var desc: String? = null
+    var envelopePic: String? = null
+    var fresh: Boolean = false
+    var id: Int = 0
+    var link: String? = null
+    var niceDate: String? = null
+    var origin: String? = null
+    var projectLink: String? = null
+    var publishTime: Long = 0
+    var superChapterId: Int = 0
+    var superChapterName: String? = null
+    var tags: List<Any>? = null
+    var title: String? = null
+    var type: Int = 0
+    var userId: Int = 0
+    var visible: Int = 0
+    var zan: Int = 0
+}
