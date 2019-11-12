@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.zh.base.BaseViewModel
 import com.example.zh.bean.*
 import com.example.zh.data.model.TreeRepository
+import com.example.zh.utils.ToastUtil
 import com.example.zh.utils.executeRequest
 
 class TreeViewModel : BaseViewModel(){
@@ -32,8 +33,41 @@ class TreeViewModel : BaseViewModel(){
         return data
     }
 
-    fun likeArticle(id: Int) = treeRepository.likeArticle(id)
-    fun cancelArticle(id: Int) = treeRepository.cancelArticle(id)
+    fun likeArticle(id: Int): LiveData<String>{
+        val contentData = MutableLiveData<String>()
+        executeRequest(
+            request = { treeRepository.likeArticle(id) },
+            onSuccess = {
+                if (it.isSuccess()){
+                    contentData.postValue("收藏成功")
+                }else{
+                    contentData.postValue(null)
+                    ToastUtil.showToast("请先登录")
+                }
+            },
+            onFail = { contentData.postValue(null) }
+
+
+        )
+        return contentData
+    }
+
+    fun cancelArticle(id: Int): LiveData<String>{
+        val contentData = MutableLiveData<String>()
+        executeRequest(
+            request = { treeRepository.cancelArticle(id) },
+            onSuccess = {
+                if (it.isSuccess()){
+                    contentData.postValue("取消成功")
+                }else{
+                    contentData.postValue(null)
+                    ToastUtil.showToast("请先登录")
+                }
+            },
+            onFail = {contentData.postValue(null)}
+        )
+        return contentData
+    }
 
 
 }
