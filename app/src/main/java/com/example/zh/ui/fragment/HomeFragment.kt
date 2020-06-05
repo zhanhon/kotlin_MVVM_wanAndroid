@@ -2,10 +2,9 @@ package com.example.zh.ui.fragment
 
 
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 
@@ -16,7 +15,6 @@ import com.example.zh.ui.adapter.BannerImageLoader
 import com.example.zh.ui.adapter.HomeAdapter
 import com.example.zh.ui.home.WebActivity
 import com.example.zh.ui.viewmodel.HomeViewModel
-import com.example.zh.utils.MyLog
 import com.example.zh.utils.ToastUtil
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
@@ -25,6 +23,8 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadmoreListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
+import com.zhanh.utilscorekt.aop.SingleClick
+import com.zhanh.utilscorekt.aop.log.DebugLog
 
 
 /**
@@ -39,7 +39,7 @@ class HomeFragment : BaseFragment(){
     }
 
     override fun initVM() {
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProvider.NewInstanceFactory().create(HomeViewModel::class.java)
 
     }
 
@@ -60,13 +60,7 @@ class HomeFragment : BaseFragment(){
 
         homeAdapter.onItemChildClickListener = object : BaseQuickAdapter.OnItemChildClickListener{
             override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                val item = viewModel.mList.get(position)
-                if (!item.isCollect){
-                    likeArticle(item.id,item,position)
-                }else{
-                    cancelArticle(item.id,item,position)
-                }
-
+                onItemChildSingleClick(position)
             }
         }
 
@@ -102,6 +96,17 @@ class HomeFragment : BaseFragment(){
         getArticle(viewModel.pageNum)
         getBanner()
     }
+
+    @SingleClick
+    fun onItemChildSingleClick(position: Int){
+        val item = viewModel.mList.get(position)
+        if (!item.isCollect){
+            likeArticle(item.id,item,position)
+        }else{
+            cancelArticle(item.id,item,position)
+        }
+    }
+
 
     fun getBanner(){
         viewModel.getBanner().observe(this, Observer {
